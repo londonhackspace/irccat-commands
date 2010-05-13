@@ -18,7 +18,7 @@ for i in 0,1,2,3,4,5:
     elif(chamber[i]==1):
         print 'BANG! You are dead!'
         chosen = random.randint(0,5)
-        print 'I will load a bullet in chamber %d and spin the barrel' % (chosen + 1)
+        print 'I will load a bullet in chamber %d and spin the barrel' % (chosen)
         spin = random.randint(0,30)
         chosen = chosen + (spin - (6 * (spin // 6)))
         if (chosen>5):
