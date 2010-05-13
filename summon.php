@@ -10,5 +10,5 @@
         print "UNKNOWN THING\n";
     } else {
         $tinyurl = file("http://tinyurl.com/api-create.php?url=".urlencode(trim($matches[1])));
-        print "SUMMONED ".strtoupper(implode(' ', $args)).": ".$tinyurl[0]."\n";
+        print "SUMMONED ".strtoupper(implode(' ', $args)).": ".trim($tinyurl[0])."\n";
     }
