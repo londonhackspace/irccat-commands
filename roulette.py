@@ -18,7 +18,7 @@ for i in 0,1,2,3,4,5:
     elif(chamber[i]==1):
         print 'BANG! You are dead!'
         chosen = random.randint(0,5)
-        print 'I will load a bullet in chamber', chosen, 'and spin the barrel'
+        print 'I will load a bullet in chamber %d and spin the barrel' % (chosen + 1)
         spin = random.randint(0,30)
         chosen = chosen + (spin - (6 * (spin // 6)))
         if (chosen>5):
@@ -28,7 +28,6 @@ for i in 0,1,2,3,4,5:
                 chamber[i] = 1
             else:
                 chamber[i] = 0 
-        #print 'now in', chosen
         break
 
 file = open("/usr/share/irccat/pickle.pck", "w") # write mode
