@@ -9,5 +9,6 @@
     if (!$matches) {
         print "UNKNOWN THING\n";
     } else {
-        print "SUMMONED ".strtoupper(implode(' ', $args)).": ".trim($matches[1])."\n";
+        $tinyurl = file("http://tinyurl.com/api-create.php?url=".urlencode(trim($matches[1])));
+        print "SUMMONED ".strtoupper(implode(' ', $args)).": ".$tinyurl[0]."\n";
     }
