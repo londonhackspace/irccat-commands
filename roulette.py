@@ -16,7 +16,7 @@ for i in 0,1,2,3,4,5:
         chamber[i] = 2
         break
     elif(chamber[i]==1):
-        print 'BANG! Your dead!'
+        print 'BANG! You are dead!'
         chosen = random.randint(0,5)
         print 'I will load a bullet in chamber', chosen, 'and spin the barrel'
         spin = random.randint(0,30)
