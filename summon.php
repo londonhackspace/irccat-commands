@@ -9,5 +9,5 @@
     if (!$matches) {
         print "UNKNOWN THING\n";
     } else {
-        print "SUMMONED ".strtoupper(implode(' ', $args)).": ".$matches[1]."\n";
+        print "SUMMONED ".strtoupper(implode(' ', $args)).": ".trim($matches[1])."\n";
     }
