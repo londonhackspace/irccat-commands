@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$2" -ne '' ]; then
+if [ "$2" != 'null' ]; then
     echo "$1, I have pm'd you the list of available commands."
 fi
 
