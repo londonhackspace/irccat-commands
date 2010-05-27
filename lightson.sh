@@ -1,3 +1,9 @@
 #!/bin/bash
-curl -s http://localhost:8000/_/ffffff -o /dev/null && echo "Lights turned on"
-#echo "DMX Lights turned on!"
+
+COLOUR=$5
+
+if [[ ! $COLOUR ]]; then
+    COLOUR='ffffff'
+fi
+
+curl -s http://localhost:8000/_/$COLOUR -o /dev/null && echo "Lights are now $COLOUR"
