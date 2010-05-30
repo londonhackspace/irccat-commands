@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file=/usr/share/irccat/makerbot.txt
+file=/usr/share/irccat/.makerbot.txt
 
 if [ "`cat $file`" == 'broken' ]; then
   diff=0
