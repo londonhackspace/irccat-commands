@@ -9,6 +9,6 @@ match = re.search('Current.*?<ul>(.*?)</ul>', data, re.DOTALL)
 people = match.group(1)
 
 # Woo, evil!
-peopleList = re.findall('<li>\s*(?:<a.*?>)?\s*(.*?)\s*(?:</a>)?\s*</li>', people, re.DOTALL);
+peopleList = re.findall('<li>\s*(?:<a.*?>)?\s*(.*?)\s*(?:</a>.*?)?\s</li>', people, re.DOTALL);
 
 print 'Current Keyholders: ' + ', '.join(peopleList)
