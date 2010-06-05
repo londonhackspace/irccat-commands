@@ -2,18 +2,23 @@
 
 file=/usr/share/irccat/.makerbot.txt
 
-if [ "`cat $file`" == 'broken' ]; then
-  diff=0
-else
-  now=`date +%s`
-  borked=`stat -c %Z $file`
-  #echo $now/$borked
-  diff=`expr \( $now - $borked \) / 60 / 60 / 24`
-fi
+shift; shift; shift; shift
 
-if [ "$diff" == '1' ]; then
-  days=day
+if [ "$1" == '' ]; then
+  if [ "`cat $file`" != 'working' ]; then
+    echo "The makerbot is currently `cat $file`"
+  else
+    now=`date +%s`
+    borked=`stat -c %Z $file`
+    diff=`expr \( $now - $borked \) / 60 / 60 / 24`
+  
+    if [ "$diff" == '1' ]; then
+      days=day
+    else
+      days=days
+    fi
+    echo It has been $diff $days since the last incident.
+  fi
 else
-  days=days
+  echo $*>$file
 fi
-echo It has been $diff $days since the last incident.
