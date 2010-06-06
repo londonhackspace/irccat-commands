@@ -2,7 +2,7 @@
 
 echo -en "Flashing beacons!\r\n"
 
-# TODO: check the last movement time and don't flash if the space has been empty an hour
+/usr/share/irccat/setBoard.py "Beacon: $1"
 
 for i in {1..5}
 do
@@ -10,4 +10,4 @@ do
     curl http://localhost:8000/_/0,0,0?restoreAfter=1 &> /dev/null
 done
 
-#echo -en "Beacon sequence complete.\r\n"
+/usr/share/irccat/setBoard.py ""

@@ -9,7 +9,7 @@ except:
     sys.exit(0)
 
 args = sys.argv
-message = " ".join(args[5::])
+message = " ".join(args[1::])
 
 #Shorten message to 21 chars or less
 message = message[:21]
@@ -23,10 +23,6 @@ else:
 
 print "'%s' displayed on board" % message
 
-#Add | if short
-if len(message) < 21:
-    message = message + "|"
-
 #Send to arduino
-port.write(message)
+port.write(message + "\n")
 port.close()
