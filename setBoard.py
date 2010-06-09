@@ -21,7 +21,10 @@ else:
     port.close()
     sys.exit(0)
 
-print "'%s' displayed on board" % message
+if message == '':
+  print "Board cleared"
+else:
+  print "'%s' displayed on board" % message
 
 #Send to arduino
 port.write(message + "\n")
