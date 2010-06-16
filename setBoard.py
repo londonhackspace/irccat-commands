@@ -12,7 +12,7 @@ args = sys.argv
 message = " ".join(args[1::])
 
 #Shorten message to 21 chars or less
-message = message[:21]
+message = message[:162]
 
 if message == '' or re.match('^[ -~]+$', message):
     message = message
@@ -24,7 +24,7 @@ else:
 if message == '':
   print "Board cleared"
 else:
-  print "'%s' displayed on board" % message
+  print "Displayed on board"
 
 #Send to arduino
 port.write(message + "\n")
