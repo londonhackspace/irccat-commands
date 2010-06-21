@@ -6,7 +6,7 @@ shift; shift; shift; shift
 
 if [ "$1" == '' ]; then
   if [ "`cat $file`" != 'working' ]; then
-    echo "The makerbot is currently `cat $file`"
+    echo "Makerbot status: `cat $file`"
   else
     now=`date +%s`
     borked=`stat -c %Z $file`
