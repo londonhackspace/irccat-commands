@@ -12,8 +12,8 @@ streams()
 
 
 set $(host $(hostname))
-streams $(netstat -n | grep ${4}:8001 | wc -l) "on main webcam," 
-streams $(netstat -n | grep ${4}:8002 | wc -l) "on robot webcam.\n" 
+streams $(netstat -n | grep ${4}:8001 | grep -c ESTABLISH ) "on main webcam," 
+streams $(netstat -n | grep ${4}:8002 | grep -c ESTABLISH ) "on robot webcam.\n" 
 
 echo -en $summary
 
