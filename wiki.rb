@@ -1,9 +1,21 @@
 #!/usr/bin/ruby
+require "rubygems"
+require "curb"
+
 
 page = 'London_Hack_Space'
 
 if (!ARGV[4].to_s.empty?)
-    page = ARGV[4]
+    page = String.new
+    (4..(ARGV.length - 1)).each { |index|
+        page += "#{ARGV[index].to_s} "
+    }
+    page.gsub!(/ /, "_").gsub!(/_$/, "")
 end
 
-puts "http://wiki.hackspace.org.uk/wiki/#{page}"
+curl = Curl::Easy.new
+curl.follow_location = true
+curl.url = "http://wiki.hackspace.org.uk/w/index.php?title=Special%3ASearch&search=#{page}&go=Go"
+curl.http_head
+
+puts curl.last_effective_url
