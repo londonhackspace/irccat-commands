@@ -6,6 +6,7 @@ shift; shift; shift; shift
 
 if [ "$1" == '' ]; then
   if [ "`cat $file`" != 'working' ]; then
+    echo "http://wiki.hackspace.org.uk/wiki/Equipment/LaserCutter"
     echo "Layzor status: `cat $file`"
   else
     now=`date +%s`
