@@ -29,11 +29,11 @@ def get_price(itemid):
   d = dict(d)
 
   ccy   = d['Item(0).ConvertedCurrentPrice.CurrencyID']
-  price = d['Item(0).ConvertedCurrentPrice.Value']
+  price = float(d['Item(0).ConvertedCurrentPrice.Value'])
 
   ccyfs = dict(
-    GBP = '£%s',
-    USD = '$%s',
+    GBP = '£%0.2f',
+    USD = '$%0.2f',
   )
 
   try:
@@ -64,31 +64,35 @@ while True:
     watches = get_watches()
 
   except Exception, e:
-    print e
+    #import pdb;pdb.set_trace()
+    print repr(e)
     time.sleep(1)
     continue
-
 
   for itemid, watch in watches.items():
     try:
       price = get_price(itemid)
 
     except Exception, e:
-      print e
+      #import pdb;pdb.set_trace()
+      print repr(e)
       continue
 
     if 'oldprice' not in watch:
-      robonaut.write('Current %s Price: %s\n' % (watch['name'], price))
+      robonaut.write('Current price of %s: %s\n' % (watch['name'], price))
 
     elif price != watch['oldprice']:
-      robonaut.write('Alert! Price of %s Now: %s\n' % (watch['name'], price))
+      robonaut.write('Alert! Price of %s now: %s\n' % (watch['name'], price))
 
     watch['oldprice'] = price
 
   try:
     save_watches(watches)
   except Exception, e:
-    print e
+    #import pdb;pdb.set_trace()
+    robonaut.write('Could not save new prices')
+    print repr(e)
+    sys.exit(1)
 
   time.sleep(1)
 
