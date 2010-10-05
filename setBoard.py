@@ -1,12 +1,6 @@
 #!/usr/bin/env python
 
-import serial, sys, time, re
-
-try:
-    port = serial.Serial("/dev/ttyUSB1", 9600, timeout=1)
-except:
-    print "Could not connect to arduino"
-    sys.exit(0)
+import serial, sys, time, re, urllib, urllib2
 
 args = sys.argv
 message = " ".join(args[1::])
@@ -17,7 +11,7 @@ message = message[:162]
 if message == '' or re.match('^[ -~]+$', message):
     message = message
 else:
-    print 'Alphanumeric only please'
+    print 'Standard ASCII only please'
     port.close()
     sys.exit(0)
 
@@ -26,6 +20,6 @@ if message == '':
 else:
   print "Displayed on board"
 
-#Send to arduino
-port.write(message + "\n")
-port.close()
+# Send to boarded
+message = urllib.quote(message)
+urllib2.urlopen("http://127.0.0.1:8020/%s" % message)
