@@ -9,8 +9,9 @@ if [ "$1" == '' ]; then
     echo "Makerbot status: `cat $file`"
   else
     now=`date +%s`
-    borked=`stat -c %Z $file`
-    diff=`expr \( $now - $borked \) / 60 / 60 / 24`
+    borked=`stat -c %Y $file`
+    # Round up
+    diff=`expr \( $now - $borked + 86399 \) / 60 / 60 / 24`
   
     if [ "$diff" == '1' ]; then
       days=day
