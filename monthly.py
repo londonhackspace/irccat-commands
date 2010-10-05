@@ -23,6 +23,9 @@ def date_suffix(day):
 
 
 when = meeting.strftime('%A %d%%s %B') % date_suffix(meeting.day)
-until = '%d days, %d hours' % (meeting_delta.days, meeting_delta.seconds / 3600)
+  
+until = '%d hours' % (meeting_delta.seconds / 3600)
+if meeting_delta.days > 0:
+  until = '%d days, %s' % (meeting_delta.days, until)
 
 print 'Next monthly meeting: %s (%s until hacking!)' % (when, until)
