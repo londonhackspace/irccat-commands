@@ -22,6 +22,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 """
 
+import random
 from random import Random
 import sys
 import copy
@@ -104,7 +105,7 @@ generator.seed()
 try:
     type = sys.argv[5]
 except IndexError:
-    pass
+    type = random.choice(['mastercard', 'visa', 'amex'])
 
 if (type == 'mastercard'):
     prefix = mastercardPrefixList
