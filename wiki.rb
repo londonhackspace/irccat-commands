@@ -15,7 +15,7 @@ end
 
 curl = Curl::Easy.new
 curl.follow_location = true
-curl.url = "http://wiki.hackspace.org.uk/w/index.php?title=Special%3ASearch&search=#{page}&go=Go"
+curl.url = "http://wiki.hackspace.org.uk/w/index.php?search=#{page}"
 curl.http_head
 
 puts curl.last_effective_url
