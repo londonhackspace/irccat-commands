@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys, os, pickle, datetime
+import sys, os, pickle, datetime, difflib
 
 def dayordinal(day):
   if 4 <= day <= 20 or 24 <= day <= 30:
@@ -38,7 +38,13 @@ try:
     d = lastseen[name.lower()]
 
 except KeyError:
-    print "%s has not opened the door since I started logging." % name
+
+    matches = difflib.get_close_matches(name.lower(), lastseen.keys(), 1)
+
+    if matches:
+        print "I have never seen someone called %s open the door. Did you mean %s?" % (name, matches[0])
+    else:
+        print "%s has not opened the door since I started logging." % name
 
 else:
     print "%s last opened the hackspace door on %s %s %s (%s ago)" % (
