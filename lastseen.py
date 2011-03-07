@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys, os, pickle
+import sys, os, pickle, datetime
 
 PICKLEFILE = '/usr/share/irccat/.lastseen.pickle'
 
@@ -15,7 +15,7 @@ if os.path.exists(PICKLEFILE):
     lastseen = pickle.load(open(PICKLEFILE))
 
 try:
-    print "%s last opened the hackspace door on %s" % (name, lastseen[name.lower()])
+    print "%s last opened the hackspace door on %s (%s ago)" % (name, str(lastseen[name.lower()]), str(datetime.datetime.now() - lastseen[name.lower()]))
 
 except:
     print "%s has not opened the door since I started logging." % name
