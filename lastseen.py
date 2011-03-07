@@ -15,7 +15,7 @@ if os.path.exists(PICKLEFILE):
     lastseen = pickle.load(open(PICKLEFILE))
 
 try:
-    print "%s last opened the hackspace door on %s (%s ago)" % (name, str(lastseen[name.lower()]), str(datetime.datetime.now() - lastseen[name.lower()]))
+    print "%s last opened the hackspace door on %s (%s ago)" % (name, str(lastseen[name.lower()]).split['.'](0), str(datetime.datetime.now() - lastseen[name.lower()]).split['.'](0))
 
 except:
     print "%s has not opened the door since I started logging." % name
