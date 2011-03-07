@@ -79,10 +79,12 @@ while True:
       continue
 
     if 'oldprice' not in watch:
-      robonaut.write('Current price of %s: %s\n' % (watch['name'], price))
+      n = watch['name'] or itemid
+      robonaut.write('[EB] Current price of %s: %s\n' % (n, price))
+        
 
     elif price != watch['oldprice']:
-      robonaut.write('Alert! Price of %s now: %s\n' % (watch['name'], price))
+      robonaut.write('[EB] Alert! Price of %s now: %s\n' % (watch['name'], price))
 
     watch['oldprice'] = price
 
