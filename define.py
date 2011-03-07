@@ -27,11 +27,17 @@ def tidy(output):
 
 
 if len(sys.argv) < 6 or sys.argv[5] is None:
+  print 'verb: to state the meaning of'
   sys.exit()
 
 term = ' '.join(sys.argv[5:])
+if term == 'trolling':
+  print 'Muz'
+  sys.exit()
+elif term == 'define':
+  print '++Error out of cheese please redo from start++'
+  sys.exit()
 args = {'term': term}
-
 
 define = getjson('http://www.urbandictionary.com/iphone/search/define?', args)
 #related = getjson('http://www.urbandictionary.com/iphone/search/related?', args)

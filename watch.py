@@ -4,7 +4,7 @@ import sys
 import pickle
 
 itemid = sys.argv[5]
-name = sys.argv[6]
+name = ' '.join(sys.argv[6:])
 
 picklefile = '/usr/share/irccat/.watches.pck'
 
