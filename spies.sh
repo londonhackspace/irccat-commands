@@ -18,5 +18,7 @@ streams $(netstat -n | grep -c "${4}:8003.*ESTABLISHED" ) "on door cam.\n"
 # streams $(netstat -n | grep -c "${4}:800.*CLOSE_WAIT"   ) "closing.\n" 
 
 echo -en $summary
+echo -e  "(but didn't count all the spies on the proxy server)"
+
 
 
