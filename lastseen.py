@@ -1,12 +1,31 @@
 #!/usr/bin/env python
 import sys, os, pickle, datetime
 
+def dayordinal(day):
+  if 4 <= day <= 20 or 24 <= day <= 30:
+    suffix = 'th'
+  else:
+    suffix = ['st', 'nd', 'rd'][day % 10 - 1]
+  return '%d%s' % (day, suffix)
+
+def untilmsg(until):
+    hours, seconds = divmod(until.seconds, 3600)
+    days = until.days
+    d_s = '' if days == 1 else 's'
+    h_s = '' if hours == 1 else 's'
+    if hours == 0:
+        return '%s day%s' % (days, d_s)
+    elif days == 0:
+        return '%s hour%s' % (hours, h_s)
+    else:
+        return '%s day%s, %s hour%s' % (days, d_s, hours, h_s)
+
+
 PICKLEFILE = '/usr/share/irccat/.lastseen.pickle'
 
-try:
-    name = sys.argv[5]
+name = ''.join(sys.argv[5:])
 
-except:
+if not name:
     print "You must specify a name to look up"
     sys.exit(0)
 
@@ -14,8 +33,18 @@ lastseen = {}
 if os.path.exists(PICKLEFILE):
     lastseen = pickle.load(open(PICKLEFILE))
 
-try:
-    print "%s last opened the hackspace door on %s (%s ago)" % (name, str(lastseen[name.lower()]).split['.'](0), str(datetime.datetime.now() - lastseen[name.lower()]).split['.'](0))
 
-except:
+try:
+    d = lastseen[name.lower()]
+
+except KeyError:
     print "%s has not opened the door since I started logging." % name
+
+else:
+    print "%s last opened the hackspace door on %s %s %s (%s ago)" % (
+        name,
+        d.strftime('%A'),
+        dayordinal(d.day),
+        d.strftime('%B %Y %H:%M'),
+        untilmsg(datetime.datetime.now() - d),
+    )
