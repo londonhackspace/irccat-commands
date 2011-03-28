@@ -54,7 +54,7 @@ except KeyError:
 firstline = unescapehtml(defn).splitlines()[0]
 if len(firstline) > 200:
   firstline = firstline[0:200] + '...'
-print firstline
+print "%s: %s" % (term, firstline)
 #print tidy(ex)
 
 
