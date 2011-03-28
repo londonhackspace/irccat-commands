@@ -23,7 +23,7 @@ def untilmsg(until):
 
 PICKLEFILE = '/usr/share/irccat/.lastseen.pickle'
 
-name = ''.join(sys.argv[5:])
+name = ' '.join(sys.argv[5:])
 
 if not name:
     print "You must specify a name to look up"

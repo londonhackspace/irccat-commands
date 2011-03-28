@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import serial, sys, time, re, urllib, urllib2
+import sys, time, re, urllib, urllib2
 
 args = sys.argv
 message = " ".join(args[1::])
@@ -8,11 +8,11 @@ message = " ".join(args[1::])
 #Shorten message to 21 chars or less
 message = message[:162]
 
-if message == '' or re.match('^[ -~]+$', message):
+'\xc2\xa3'
+if message == '' or re.match(u'^[\xc2\xa3 -~]+$', message):
     message = message
 else:
     print 'Standard ASCII only please'
-    port.close()
     sys.exit(0)
 
 if message == '':
