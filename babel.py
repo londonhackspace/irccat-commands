@@ -19,7 +19,6 @@ config.read((
 
 apikey = config.get('babel', 'key')
 
-
 if '|' in args[0]:
   langpair = args.pop(0)
 else:
@@ -81,7 +80,7 @@ else:
 
   lines, senses, lang, parsing, analysis, alternates = res[:6]
   #print res
-  u1, didyoumean, u2, somenum, u3 = res[6:11]
+  u1, didyoumean, u2, somenum = res[6:11]
   text = ''.join(tt for tt, st, u3, standalone in lines)
   if analysis:
     # I think u3 might be popularity
@@ -99,10 +98,9 @@ else:
     #html = html.decode('unicode-escape')
     msg = '%s (Did you mean %s?)' % (msg, text)
 
-  print msg
+  print msg.encode('utf-8')
 
 #match = re.search('"estimatedResultCount":"(.*?)"', page)
 #if match:
 #  count = int(match.group(1))
 #  print locale.format('%d', count, True)
-
