@@ -1,0 +1,12 @@
+*.pyc
+pickle.pck
+makerbot.txt
+.kegerator
+.lastseen.pickle
+.layzor.txt
+.makerbot.txt
+.notify.log
+.orbot.pl
+.useless/monthly.py
+.watches.pck
+babel.conf
