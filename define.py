@@ -47,14 +47,26 @@ try:
 
   defn = sense['definition']
   ex = sense['example']
+  word = sense['word']
 except KeyError:
   sys.exit()
 
 
 firstline = unescapehtml(defn).splitlines()[0]
-if len(firstline) > 200:
-  firstline = firstline[0:200] + '...'
-print "%s: %s" % (term, firstline)
+
+MAXLEN = 210
+if len(firstline) > MAXLEN:
+  # + 1 in case it cuts perfectly at a word boundary
+  end = firstline.rfind(' ', 0, MAXLEN - len('...') + 1)
+  firstline = firstline[:end]
+
+  # Fix letters that look bad before an ellipsis
+  if firstline[-1] in (' .,;:-+=&?!'):
+    firstline += ' ' # Yes, I know this breaks MAXLEN
+
+  firstline += '...'
+
+print "%s: %s" % (word, firstline)
 #print tidy(ex)
 
 
