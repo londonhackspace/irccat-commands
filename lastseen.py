@@ -33,7 +33,6 @@ lastseen = {}
 if os.path.exists(PICKLEFILE):
     lastseen = pickle.load(open(PICKLEFILE))
 
-
 try:
     d = lastseen[name.lower()]
 
@@ -42,12 +41,21 @@ except KeyError:
     matches = difflib.get_close_matches(name.lower(), lastseen.keys(), 1)
 
     if matches:
-        print "I have never seen someone called %s open the door. Did you mean %s?" % (name, matches[0])
+        d = lastseen[matches[0].lower()]
+        print "I have never seen someone called %s open the door. If you meant %s, they last opened the hackspace door on %s %s %s (%s ago)." % (
+            name,
+            matches[0],
+            d.strftime('%A'),
+            dayordinal(d.day),
+            d.strftime('%B %Y %H:%M'),
+            untilmsg(datetime.datetime.now() - d),
+        )
+
     else:
         print "%s has not opened the door since I started logging." % name
 
 else:
-    print "%s last opened the hackspace door on %s %s %s (%s ago)" % (
+    print "%s last opened the hackspace door on %s %s %s (%s ago)." % (
         name,
         d.strftime('%A'),
         dayordinal(d.day),
