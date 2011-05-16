@@ -1,17 +1,33 @@
 #!/usr/bin/env python
-import lxml.html
-import urllib2
+import urllib2, lxml.html, sys, codecs
 
-site = urllib2.urlopen('http://www.howmanypeopleareinspacerightnow.com')
+sys.stdout = codecs.getwriter('utf8')(sys.stdout)
+
+request = urllib2.Request('http://en.wikipedia.org/wiki/Template:People_currently_in_space')
+request.add_header('User-Agent', 'Zomg, 1.0')
+
+opener = urllib2.build_opener()
+site = opener.open(request).read()
+
+# To get around a bug in lxml
+import StringIO
+site = StringIO.StringIO(site)
 
 root = lxml.html.parse(site).getroot()
 
-content_node = root.xpath('//div[@class="content"]')
+amount = 0
+strings = []
 
-num_node    = content_node[0].xpath('//h2')
-num_people  = num_node[0].text_content()
+rows = root.xpath('//table[@class="nowraplinks collapsible autocollapse"]/tr')
 
-text_node   = content_node[0].xpath('//p')
-text        = text_node[2].text_content().lower()
+for row in rows:
+    orbiter = row.xpath('./td[@class="navbox-group"]')
 
-print "There are currently %s people in space, %s." % (num_people, text)
+    if orbiter:
+        astronauts = row.xpath('.//td[@class="navbox-list navbox-"]/div/a')
+ 
+        strings.append('%s on the %s' % (len(astronauts), orbiter[0].text_content()))
+        amount += len(astronauts)
+
+
+print "There are currently %s people in space! (%s)" % (amount, ', '.join(strings))
