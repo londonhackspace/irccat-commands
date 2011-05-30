@@ -19,8 +19,9 @@ url = 'http://celestrak.com/NORAD/elements/stations.txt'
 sat = fromtle(url, body)
 
 sat.compute(lhs)
-msg = 'Height %dkm, distance %dkm %dkm/s, magnitude %s' % (
-  sat.elevation / 1000, sat.range / 1000, sat.range_velocity, sat.mag
+msg = 'Height %dkm, distance %dkm %skm/s, magnitude %s' % (
+  round(sat.elevation / 1000), round(sat.range / 1000),
+  round(sat.range_velocity / 1000, 2), sat.mag
 )
 
 if sat.eclipsed:
