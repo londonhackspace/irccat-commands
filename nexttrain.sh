@@ -15,5 +15,5 @@ case "$dir" in
         ;;
 esac
 
-/home/ms7821/trains.sh Hoxton|grep -i "$dir"|head -1
+/home/ms7821/git/NRE/trains.sh Hoxton|grep -i "$dir"|head -1
 
