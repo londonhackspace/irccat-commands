@@ -5,6 +5,8 @@ makerbot.txt
 .lastseen.pickle
 .layzor.txt
 .makerbot.txt
+.printer.txt
+.3in1.txt
 .notify.log
 .orbot.pl
 .useless/monthly.py
