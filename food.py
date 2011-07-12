@@ -20,6 +20,8 @@ PLACES = {
     ['sandwich', 'sandwiches', 'panini', 'paninis', 'coffee', 'breakfast'],
   ('Prufrock', '140 Shoreditch High St'):
     ['coffee', 'coffee'],
+  ('Allpress Espresso', '58 Redchurch St'):
+    ['coffee', 'sandwiches'],
   ('Saf', '152-154 Curtain Road'):
     ['vegan', 'veg', 'vegetarian'],
   ('Red Planet Pizza', '26 Kingsland Road'):
