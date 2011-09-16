@@ -1,2 +1,2 @@
 #!/bin/bash
-echo http://london.hackspace.org.uk/webcams.html
+echo http://london.hackspace.org.uk/members/webcams.php

@@ -1,5 +1,5 @@
 #!/bin/bash
-set - $(curl -s 'http://london.hackspace.org.uk/webcam_stats.php'|sed 's/:/ /g')
+set - $(curl -sk 'https://london.hackspace.org.uk/webcam_stats.php'|sed 's/:/ /g')
 
 while [ $1 ]; do
   echo -n "$2 on $1"
