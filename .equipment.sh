@@ -2,11 +2,12 @@
 
 file=$1
 equipment=$2
-shift; shift
+editor=$3
+shift; shift; shift
 
 if [ "$1" == '' ]; then
-  if [ "`cat $file`" != 'working' ]; then
-    echo "$equipment status: `cat $file`"
+  if [ "`tail -1 $file`" != 'working' ]; then
+    echo "$equipment status: `tail -1 $file`"
   else
     now=`date +%s`
     borked=`stat -c %Y $file`
@@ -18,8 +19,11 @@ if [ "$1" == '' ]; then
     else
       days=days
     fi
-    echo $equipment: it has been $diff $days since the last incident.
+    echo $equipment working: it has been $diff $days since the last incident.
   fi
 else
-  echo $*>$file
+  # yeah I know this accumulates indefinitely. I think a little history 
+  # is a good idea. When it gets too much, someone can fix it.
+  echo "Changed at " $(date) " by " $editor >>$file
+  echo $*>>$file
 fi

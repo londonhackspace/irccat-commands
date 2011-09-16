@@ -1,7 +1,7 @@
 #!/bin/bash
 
-file=/usr/share/irccat/.printer.txt
-equipment=Printer
+file=/usr/share/irccat/.knitter.txt
+equipment=Gnotter
 editor=$1
 
 shift; shift; shift; shift
