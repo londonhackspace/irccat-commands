@@ -12,9 +12,9 @@ dates = [
   (2011,  7, 19),
   (2011,  8, 23),
   (2011,  9, 20),
-  (2011, 10, 15),
-  (2011, 11, 18),
-  (2011, 12, 15),
+  (2011, 10, 18),
+  (2011, 11, 15),
+  (2011, 12, 13),
 ]
 
 meets = [datetime.datetime(y, m, d, 19, 30) for y, m, d in dates]
@@ -29,12 +29,12 @@ next_delta = next - now
 
 def date_suffix(day):
   if 4 <= day <= 20 or 24 <= day <= 30:
-    return 'th'
+    return '%dth' % day
   else:
-    return ['st', 'nd', 'rd'][day % 10 - 1]
+    return '%d%s' % (day, ['st', 'nd', 'rd'][day % 10 - 1])
 
 
-when = next.strftime('%A %d%%s %B') % date_suffix(next.day)
+when = next.strftime('%A %%s %B') % date_suffix(next.day)
 until = '%d hours' % (next_delta.seconds / 3600)
 if next_delta.days > 0:
   until = '%d days, %s' % (next_delta.days, until)
