@@ -21,19 +21,23 @@ function searched() {
         var a = rg.getElementsByTagName('a')[0];
         return a.href;
     }, grid_class);
-    var imgurl = url.match(/imgurl\x3d(.*?)\x26/)[1];
+    url = url || '';
+
+    var imgurl = url.match(/imgurl\x3d(.*?)\x26/);
+    if (!imgurl) {
+      console.log('UNKNOWN THING');
+      phantom.exit();
+    }
 
     onload(shortened);
-    page.open('http://tinyurl.com/api-create.php?' + urlencode({
-      'url': imgurl
-    }));
+    page.open('http://tinyurl.com/api-create.php?url=' + imgurl[1]);
 }
 
 function shortened() {
     var url = page.evaluate(function() {
       return document.body.innerText;
     });
-    console.log(url)
+    console.log('SUMMONED ' + url);
     phantom.exit();
 }
 
