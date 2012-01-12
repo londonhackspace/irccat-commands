@@ -2,28 +2,32 @@ var quiet = true;
 var snaps = false;
 var page;
 
-var old = true;
+var old_layout = true;
+var thing = phantom.args.join(' ');
+
 function start() {
     onload(searched);
     var args = {
         'tbm': 'isch',
-        'q': phantom.args.join(' ')
+        'q': thing,
     };
-    if (old) args['sout'] = 1;
+    if (old_layout) args['sout'] = 1;
     page.open('http://www.google.com/search?' + urlencode(args));
 }
 
 function searched() {
-    var grid_class = old ? 'images_table': 'rg_li';
+    var grid_class = old_layout ? 'images_table' : 'rg_li';
     var url = evaluate(function(grid_class) {
+
         var rg = document.getElementsByClassName(grid_class)[0];
-        // We could return the img src, width and height, and render it
+        // Alternatively, we could return the data:// source and render it
         var a = rg.getElementsByTagName('a')[0];
         return a.href;
+
     }, grid_class);
     url = url || '';
 
-    var imgurl = url.match(/imgurl\x3d(.*?)\x26/);
+    var imgurl = url.match(/imgurl=(.*?)&/);
     if (!imgurl) {
       console.log('UNKNOWN THING');
       phantom.exit();
@@ -35,9 +39,11 @@ function searched() {
 
 function shortened() {
     var url = page.evaluate(function() {
+
       return document.body.innerText;
+
     });
-    console.log('SUMMONED ' + url);
+    console.log('SUMMONED ' + thing.toUpperCase() + ': ' + url);
     phantom.exit();
 }
 
@@ -53,9 +59,9 @@ try {
 
 function run() {
 
-    if (phantom.args.length != 1) {
+    if (phantom.args.length < 1) {
         if (!quiet) {
-            console.log('Usage: ' + phantom.scriptName + ' [args]');
+            console.log('Usage: ' + phantom.scriptName + ' [thing]');
         }
         phantom.exit();
     } else {
