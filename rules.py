@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#!/usr/bin/python
 
 """ Repeats either individual or all rules to the user """
 # SamLR 18-05 feel free to do what you like with this
@@ -6,43 +6,196 @@
 from sys import argv
 from time import sleep
 import socket
-rules = ("Do not be on fire",
-         "Don't use power tools without briefing",
-         "Don't defeat/hack safety features",
-         "If in doubt: ask",
-         "If something is broken, fix it",
-         "If you're doing something major, ask the mailing list",
-         "Members may store things in the space but it must be in a box; one box per member",
-         "Large items are allowed but must be cleared with the list first and labelled",
-         "Please don't donate crap",
-         "If you don't want something hacked label it as such",
-         "If something looks expensive check before hacking",
-         "Workareas must be clean before you leave, tools must be returned",
-         "Put dirty crockery in the dishwasher before you leave", 
-         "Items left in workareas are fair game",
-         "Made a mess? clean it up",
-         "If an item needs to be thrown put it in the 3 week box",
-         "Large items (that won't fit in the box) should be checked with the list before disposal",
-         "Check with the list before throwing useful items",)
 
-if argv[-1]=='34':
-    print "If you can think of it, the internet has porn of it"
-if argv[-1]=='help' or argv[-1]=='?':
-    print "use ?rules <n> for a specific rule or ?rules to be PM'd all the rules"
-elif argv[-1].isdigit(): 
-    print "Rule %i: %s"%(int(argv[-1]), rules[int(argv[-1])])
+max_hackspace_rule = 20
+
+rules = {
+# London Hackspace
+  '0': "Do not be on fire",
+
+  '1': "Don't use power tools without briefing",
+  '2': "Don't defeat/hack safety features",
+  '3': "Check the wiki. If in doubt: ask",
+
+  '4': "If something is broken, fix it; don't complain",
+  '5': "If you're doing something major, ask the mailing list first",
+
+  '6': "Do not treat the Hackspace like your home. You should not sleep in the space",
+
+  '7': "Members may store things in the space but it must be in a box; one box per member",
+  '8': "Large items are allowed but must be cleared with the list first and labelled",
+
+  '9': "Please don't donate crap",
+  '10': "If you don't want something hacked label it as such",
+  '11': "If something looks valuable check before hacking",
+  '12': "Don't take tools without asking the mailing list first",
+
+  '13': "Workareas must be clean before you leave, tools must be returned",
+  '14': "Put dirty crockery in the dishwasher before you leave", 
+  '15': "Items left in workareas are fair game",
+  '16': "Made a mess? Clean it up",
+  '17': "Don't bring bikes in unless you are working on them, they take up too much room",
+
+  '18': "If an item needs to be thrown put it in the 3 week box",
+  '19': "Large items (that won't fit in the box) should be checked with the list before disposal",
+  '20': "Check with the list before throwing useful items",
+
+# Red Dwarf:
+  '003': "By joining Star Corps each individual tacitly consents to give up his inalienable rights "
+         "to life, liberty and adequate toilet facilities", # Red Dwarf 1996 Log Book
+  '005': "Gross negligence, leading to the endangerment of personnel, is discouraged", # "Queeg"
+  '112': "A living crew member always out-ranks a mechanical", # Season V/"White Hole"
+  '142': "In a hostage demand situation, a hologrammatic personality is entirely expendable",
+         # Season V
+  '147': "Crew members are expressly forbidden from leaving their vessel except on permission of "
+         "a permit. Permits can only be issued by the Chief Navigation Officer, who is expressly "
+         "forbidden from issuing them except on production of a permit",
+         # "Ouroboros"/Red Dwarf 1996 Log Book
+  '195': "In an emergency power situation, a hologrammatic crewmember must lay down his life in "
+         "order that the living crew-members might survive", # "White Hole"
+  '271': "No chance, you metal bastard", # "White Hole"
+  '312': "Crew members in quarantine must be provided with minimum leisure facilities",
+         # "Quarantine"
+  '349': "Any officer found to have been slaughtered and replaced by a shape-changing chameleonic "
+         "life form shall forfeit all pension rights", # Red Dwarf 1996 Log Book
+  '497': "When a crewmember has run out of credits, food may not be supplied until the balance is "
+         "restored", # Queeg
+  '592': "In an emergency situation involving two or more officers of equal rank, seniority will "
+         "be given to whichever officer can programme a VCR", # PBS Ident/Red Dwarf 1996 Log Book
+  '595': "Any member of the crew who has been to a zone identified as rife with disease, or "
+         "Camden, must be quarantined", # "Quarantine"
+  '596': "Crew files are for the eyes of the Captain only", # "Back to Earth (Part Two)"
+  '597': "One berth per registered crew member", # "Quarantine"
+  '699': "Crew members may demand a rescreening after five days in quarantine showing no ill "
+         "effect", # "Quarantine"
+  '723': "Terraformers are expressly forbidden from recreating Swindon",
+         # PBS Ident/Red Dwarf 1996 Log Book
+  '997': "Work done by an officer's doppleganger in a parallel universe cannot be claimed as "
+         "overtime", # Red Dwarf 1996 Log Book
+  '1694': "During temporal disturbances, no questions shall be raised about any crew member whose "
+          "timesheet shows him or her clocking off 187 years before he clocked on",
+          # Red Dwarf 1996 Log Book
+  '1742': "No member of the Corps should ever report for active duty in a ginger toupee",
+          # "Psirens"/Red Dwarf 1996 Log Book
+  '1743': "No registered vessel should attempt to traverse an asteroid belt without deflectors",
+          # "Psirens"
+  '5796': "No officer above the rank of mess sergeant is permitted to go into combat with pierced "
+          "nipples", # "Psirens"
+  '5797': "A crew-member is not be allowed back aboard if he may, in fact, be a brain-sucking "
+          "psychotic temporal lobe slurper", # "Psirens"
+  '7214': "To preserve morale during long-haul missions, all male officers above the rank of First "
+          "Technician must, during panto season, be ready to put on a dress and a pair of false "
+          "breasts", # Red Dwarf 1996 Log Book
+  '7713': "The ship's log must be kept up to date at all times with current service records, "
+          "complete mission data and a comprehensive and accurate list of all crew birthdays so "
+          "that senior officers may avoid bitter and embarrassing silences when meeting in the "
+          "corridor with subordinates who have not received a card", # Red Dwarf 1996 Log Book
+  '34124': 'No officer with false teeth should attempt oral sex in zero gravity',
+           # "Legion"/Red Dwarf 1996 Log Book
+  '43872': "Suntans will be worn during off-duty hours only", # Red Dwarf 1996 Log Book
+  '68250': "In case of rampant sin, Kapparot shall be performed in full", # "Kapparot"/"Emohawk"
+  '98247': "No officer should be left behind on an inhabited planet unless he is missing two or "
+           "more limbs", # Advertising for the 2009 Red Dwarf special episodes
+  '196156': "Any officer caught sniffing the saddle of the exercise bicycle in the women's gym "
+            "will be discharged without trial", # "Rimmerworld"/Red Dwarf 1996 Log Book
+  '1947945': "A mechanoid may issue orders to human crew members if the lives of said crew members "
+             "are directly or indirectly under threat from a hitherto unperceived source and there "
+             "is inadequate time to explain the precise nature of the enormous and most imminent "
+             "death threat", # Original script for "Back to Reality"
+  '572 436 8217968B': "At all times show your allegiance to Red Dwarf in the US by picking up your "
+      "phone and calling your local public television station with your pledge", # PBS ident
+  '39436175880932/B': "All nations attending the conference are only allocated one car parking "
+      "space", # "Gunmen of the Apocalypse"
+  '39436175880932/C': "POW's have a right to non-violent constraint", # "Gunmen of the Apocalypse"
+
+# Star Trek
+  '33': "It never hurts to suck up to the boss",
+  '45': "Expand or die",
+  '208': "Sometimes the only thing more dangerous than a question is an answer",
+  '285': "No good deed ever goes unpunished",
+
+# Dr Who
+  '27': "Never knowingly be serious",
+  '408': "You should always waste time when you don't have any",
+
+# Monty Python
+  'four': "I don't want to catch anyone *not* drinking in their room after lights out",
+  'six': "There is no rule six",
+
+# Urban Dictionary
+  '21': "All numbers pertaining to a rule are completely and utterly random",
+  '1138': "No matter how dumb something in Star Wars or its accompanying expanded universe is, there is ALWAYS something dumber.",
+
+# 4chan/Rules of the Internet
+  '-1': "/b/ is not your friend",
+  '34': "If it exists, there is porn of it. No exceptions",
+  '35': "If no porn is found of it, it will be made",
+  '42': "Always bring your towel. No exceptions",
+  '71': "The Internet is SERIOUS FUCKING BUSINESS",
+  '85': "If it exists, there is a pony of it. No exceptions",
+
+# Hercules
+  '38': "Keep them up there",
+  '95': "Concentrate",
+  '96': "Aim",
+
+# Magic: The Gathering
+  '502.9d': "Ignore this rule",
+
+# Automata
+  '30': "http://www.wolframalpha.com/input/?i=rule+30",
+  '90': "http://www.wolframalpha.com/input/?i=rule+90",
+  '110': "http://www.wolframalpha.com/input/?i=rule+110",
+  '184': "http://www.wolframalpha.com/input/?i=rule+184",
+
+# Evil Overlord List
+  '22': "No matter how tempted I am with the prospect of unlimited power, I will not consume any "
+        "energy field bigger than my head",
+  #'27': "I will never build only one of anything important. All important systems will have "
+  #      "redundant control panels and power supplies. For the same reason I will always carry "
+  #      "at least two fully loaded weapons at all times",
+  '30': "I will be neither chivalrous nor sporting. If I have an unstoppable superweapon, I will "
+        "use it as early and as often as possible instead of keeping it in reserve",
+  '46': 'If an advisor says to me "My liege, he is but one man. What can one man possibly do?", '
+        'I will reply "This", and kill the advisor',
+  '50': "My main computers will have their own special operating system that will be completely "
+        "incompatible with standard IBM and Macintosh powerbooks",
+  '59': "I will never build a sentient computer smarter than I am",
+  '67': "No matter how many shorts we have in the system, my guards will be instructed to treat "
+        "every surveillance camera malfunction as a full-scale emergency",
+  '96': "My door mechanisms will be designed so that blasting the control panel on the outside "
+      "seals the door and blasting the control panel on the inside opens the door, not vice versa",
+  '99': "Any data file of crucial importance will be padded to 1.45MB in size",
+
+# LOTR
+  '\xe2\x88\x98': "One Ring to rule them all, One Ring to find them,\n"
+                  "One Ring to bring them all and in the darkness bind them.",
+}
+
+if len(argv) >= 5:
+    arg = ' '.join(argv[5:])
 else:
-    print argv[1], "I have PM'd you a list of the hackspace rules"
-    # open a socket to localhost to allow the pm to be sent
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect(('localhost', 12345))
-    start = '@%s The rules of the hackspace: \n'% argv[1]
-    s.send(start)
-    n_rules = len(rules) - 1
-    for i in range(len(rules)):
-        msg = "%i of %i: %s \n"%(i, n_rules, rules[i])
-        s.send(msg)
-        sleep(0.1)
-    s.close()
+    arg = argv[-1]
 
+if arg in ('help', '?', '-?'):
+    print "Use ?rules <n> for a specific rule or ?rules to be PM'd all the rules"
+
+elif arg in rules:
+    print "Rule %s: %s" % (arg, rules[arg])
+
+else:
+    if False:
+        print argv[1], "I have PM'd you a list of the hackspace rules"
+        # open a socket to localhost to allow the pm to be sent
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect(('localhost', 12345))
+        start = '@%s The rules of the hackspace: \n'% argv[1]
+        s.send(start)
+        for i in range(max_hackspace_rule + 1):
+            msg = "%i of %i: %s \n"%(i, max_hackspace_rule, rules[str(i)])
+            s.send(msg)
+            sleep(0.1)
+        s.close()
+    else:
+        print 'http://wiki.london.hackspace.org.uk/view/Rules'
 
