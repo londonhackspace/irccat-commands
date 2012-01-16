@@ -34,10 +34,17 @@ $timestamp = getMiddleDay(
 );
 
 
-$startTime = strtotime('7pm', $timestamp);
-$remaining = $startTime - time();
+$startTime = strtotime('6pm', $timestamp);
+$remaining = $startTime - mktime();
 
-if ($remaining <= 0) {
+
+if ($remaining <= -1.4 * 86400) {
+    print "Pub Standards is some time next month. Come back when the script's fixed.\n";
+
+} elseif ($remaining < -0.4 * 86400) {
+    print "Pub Standards was yesterday, you twit.\n";
+
+} elseif ($remaining < 0) {
     print "Pub Standards is currently in progress! Quick, to the pub! Run!\n";
 
 } else {
@@ -51,16 +58,18 @@ if ($remaining <= 0) {
 
     if ($days > 1) { $d_s="s"; }
     if ($hours > 1) { $h_s="s"; }
+    if ($minutes > 1) { $m_s="s"; }
 
     $date = 'on the ' . date('jS F', $timestamp) . '.';
 
-    if ($hours == 0) {
-        $message = "{$days} day".$d_s." until beer!";
+    if ($days == 0 && $hours == 0) {
+        $message = "{$minutes} minute{$m_s} until beer!";
+        $date = 'TODAY!';
     } elseif ($days == 0) {
-        $message = "Only {$hours} hour".$h_s." until beer!";
+        $message = "Only {$hours} hour{$h_s}, {$minutes} minute{$m_s} until beer!";
         $date = 'TODAY!';
     } else {
-        $message = "{$days} day".$d_s.", {$hours} hour".$h_s." until beer!";
+        $message = "{$days} day{$d_s} {$hours} hour{$h_s} until beer!";
     }
 
     print "The next pub standards is {$date} {$message}\n";
