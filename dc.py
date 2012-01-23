@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-import datetime
-import sys
+import nextevent
 
 dates = [
   (2011,  1, 25),
@@ -15,29 +14,14 @@ dates = [
   (2011, 10, 18),
   (2011, 11, 15),
   (2011, 12, 13),
+  (2012,  1, 24),
+  (2012,  2, 21),
+  (2012,  3, 20),
+  (2012,  4, 17),
+  (2012,  5, 22),
+  (2012,  6, 19),
+  (2012,  7, 17),
 ]
 
-meets = [datetime.datetime(y, m, d, 19, 30) for y, m, d in dates]
-
-now = datetime.datetime.now()
-future = [m for m in meets if m > now]
-if not future:
-  sys.exit(1)
-
-next = min(future)
-next_delta = next - now
-
-def date_suffix(day):
-  if 4 <= day <= 20 or 24 <= day <= 30:
-    return '%dth' % day
-  else:
-    return '%d%s' % (day, ['st', 'nd', 'rd'][day % 10 - 1])
-
-
-when = next.strftime('%A %%s %B') % date_suffix(next.day)
-until = '%d hours' % (next_delta.seconds / 3600)
-if next_delta.days > 0:
-  until = '%d days, %s' % (next_delta.days, until)
-
-print 'Next monthly meeting: %s (%s until beer!)' % (when, until)
-
+start, end = nextevent.get(dates, '19:30')
+nextevent.printmsg('Next monthly meeting', 'beer', start)
