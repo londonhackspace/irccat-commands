@@ -19,7 +19,7 @@ if body in aliases:
 url = 'http://celestrak.com/NORAD/elements/stations.txt'
 sat = fromtle(url, body)
 
-lhs.horizon = '10'
+lhs.horizon = '30'
 
 sat.compute(lhs)
 

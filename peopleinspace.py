@@ -21,7 +21,7 @@ strings = []
 rows = root.xpath('//table[@class="nowraplinks collapsible autocollapse"]/tr')
 
 for row in rows:
-    orbiter = row.xpath('./td[@class="navbox-group"]')
+    orbiter = row.xpath('./th[@class="navbox-group"]')
 
     if orbiter:
         astronauts = row.xpath('.//td[@class="navbox-list navbox-"]/div/a')

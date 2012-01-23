@@ -37,9 +37,10 @@ except IndexError:
     exit(1)
 
 #print('City: %s' % info['city'])
-print('%s, %sC/%sF, %s %s' % (
-    info['condition'],
+msg = u'%s%s\xb0C/%s\xb0F, %s, %s' % (
+    info['condition'] and '%s ' % info['condition'] or '',
     info['temp_c'], info['temp_f'],
     info['humidity'],
     info['wind_condition'],
-))
+)
+print msg.encode('utf-8')
