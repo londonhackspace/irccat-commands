@@ -1,2 +1,7 @@
 #!/bin/bash
-echo "Hey $5, http://jonty.co.uk/bits/wv.jpg"
+NAME=$5
+if [ "$NAME" == '' ]; then
+    NAME=$1;
+fi
+
+echo "Hey $NAME, http://hack.rs/wv.jpg"
