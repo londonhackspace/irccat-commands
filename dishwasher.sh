@@ -1,7 +1,7 @@
 #!/bin/bash
 
-file=/usr/share/irccat/.knitter.txt
-equipment=Knitter
+file=/usr/share/irccat/.dishwasher.txt
+equipment=dishwasher
 editor=$1
 
 shift; shift; shift; shift

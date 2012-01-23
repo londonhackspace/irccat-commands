@@ -7,7 +7,7 @@ shift; shift; shift
 
 if [ "$1" == '' ]; then
   if [ "`tail -1 $file`" != 'working' ]; then
-    echo "$equipment status: `tail -1 $file`"
+    echo "$equipment status: `tail -1 $file` (`tail -2 $file | head -1 | sed -e 's/  / /g' -e 's/Changed at //g'`)"
   else
     now=`date +%s`
     borked=`stat -c %Y $file`
