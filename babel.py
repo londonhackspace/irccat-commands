@@ -24,12 +24,25 @@ if '|' in args[0]:
 else:
   langpair = '|en'
 
+text = ' '.join(args)
+if re.match(r'[.\- ]+', text):
+  import subprocess
+  proc = subprocess.Popen('/usr/games/morse -ds -- %s' % text, shell=True, stdout=subprocess.PIPE)
+  text = ' '.join(proc.communicate()[0].splitlines())
+
+if langpair.split('|')[1] == 'morse':
+  import subprocess
+  proc = subprocess.Popen('/usr/games/morse -s -- %s' % text, shell=True, stdout=subprocess.PIPE)
+  text = ''.join(proc.communicate()[0].splitlines())
+  print text
+  sys.exit()
+
 if False:
   # Doesn't work with Latin yet (as that's alpha)
   sl, pipe, tl = langpair.partition('|')
   params = {
       'key': apikey,
-      'q': ' '.join(args),
+      'q': text,
       'source': sl,
       'target': tl,
   }
@@ -56,7 +69,7 @@ else:
   sl, pipe, tl = langpair.partition('|')
   params = {
     'client': 't',
-    'text': ' '.join(args),
+    'text': text,
     'sl': sl,
     'tl': tl,
     #'hl': 'en',
