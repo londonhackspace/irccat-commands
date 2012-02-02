@@ -8,7 +8,7 @@ dates = {
 
 def next_meet(fromd):
   fromd = fromd.year, fromd.month, fromd.day
-  future = [d for d in dates if d > fromd]
+  future = [d for d in dates if d >= fromd]
   if not future:
     return None
   return date(*min(future))
