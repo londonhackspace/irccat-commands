@@ -6,6 +6,8 @@ foods = sys.argv[5:]
 random.seed()
 
 PLACES = {
+  ('Lucky Chip', '31 Coate St'):
+    ['burgers'] * 3,
   ('Simply The Best', '157 Hackney Road'):
     ['chips', 'fish', 'pie', 'sausage'],
   ('Song Que', '134 Kingsland Road'):
