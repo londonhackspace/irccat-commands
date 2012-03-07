@@ -1,16 +1,19 @@
 *.pyc
 pickle.pck
-makerbot.txt
-.kegerator
 .lastseen.pickle
-.layzor.txt
-.makerbot.txt
-.printer.txt
-.3in1.txt
 .notify.log
 .orbot.pl
 .useless/monthly.py
 .watches.pck
-.knitter
-.mop
 babel.conf
+
+# .equipment.sh:
+.3in1.txt
+.dishwasher.txt
+.kegerator
+.knitter.txt
+.layzor.txt
+.makerbot.txt
+.mop.txt
+.printer.txt
+.stratasys.txt
