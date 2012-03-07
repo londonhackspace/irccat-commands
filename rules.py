@@ -20,7 +20,7 @@ rules = {
   '4': "If something is broken, fix it; don't complain",
   '5': "If you're doing something major, ask the mailing list first",
 
-  '6': "Do not treat the Hackspace like your home. You should not sleep in the space",
+  '6': "Do not treat the Hackspace like your home. Sleeping in the space is forbidden",
 
   '7': "Members may store things in the space but it must be in a box; one box per member",
   '8': "Large items are allowed but must be cleared with the list first and labelled",
