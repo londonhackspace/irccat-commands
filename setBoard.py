@@ -3,12 +3,12 @@
 import sys, time, re, urllib, urllib2
 
 args = sys.argv
-message = " ".join(args[1::])
+host = args[1]
+message = " ".join(args[2:])
 
 #Shorten message to 21 chars or less
 message = message[:162]
 
-'\xc2\xa3'
 if message == '' or re.match(u'^[\xc2\xa3 -~]+$', message):
     message = message
 else:
@@ -22,4 +22,4 @@ else:
 
 # Send to boarded
 message = urllib.quote(message)
-urllib2.urlopen("http://127.0.0.1:8020/%s" % message)
+urllib2.urlopen("http://%s:8020/%s" % (host, message))
