@@ -18,13 +18,13 @@ root = lxml.html.parse(site).getroot()
 amount = 0
 strings = []
 
-rows = root.xpath('//table[@class="nowraplinks collapsible autocollapse"]/tr')
+rows = root.xpath('//table[starts-with(@class, "nowraplinks collapsible autocollapse")]/tr')
 
 for row in rows:
     orbiter = row.xpath('./th[@class="navbox-group"]')
 
     if orbiter:
-        astronauts = row.xpath('.//td[@class="navbox-list navbox-"]/div/a')
+        astronauts = row.xpath('.//td[starts-with(@class, "navbox-list navbox-")]/div//a')
  
         strings.append('%s on the %s' % (len(astronauts), orbiter[0].text_content()))
         amount += len(astronauts)
