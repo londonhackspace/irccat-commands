@@ -4,6 +4,7 @@ import nextevent
 
 dates = {
   (2012,  2,  2): ('Recrudescence', 'Bricklayers Arms', 'W1T 1QS'),
+  (2012,  3,  1): ('Warmongers', 'Gunmakers', 'EC1R 5ET'),
 }
 
 def next_meet(fromd):
