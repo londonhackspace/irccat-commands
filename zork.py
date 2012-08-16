@@ -39,7 +39,7 @@ if len(sys.argv) > 5:
     if term.lower() in ('y', 'yes'):
         term = 'no'
 
-    if term.lower() not in ('exit', 'quit'):
+    if term.lower() not in ('exit', 'quit', 'restart'):
         write_command(output_path, term)
 
         time.sleep(1)
