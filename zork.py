@@ -26,6 +26,7 @@ def sanitize(data):
     #print repr(data)
     sections = data.split('\x1b[m')
     data = sections[-1]
+    data = re.sub('\x1b\[[0-9]+;[0-9]+H', ' ', data)
     p = subprocess.Popen(["teseq|grep '^-\?|'|reseq - -"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
     #p = subprocess.Popen(["teseq"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
     (out, err) = p.communicate(input=data)
