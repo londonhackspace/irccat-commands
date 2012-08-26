@@ -40,9 +40,12 @@ except KeyError:
 
     matches = difflib.get_close_matches(name.lower(), lastseen.keys(), 1)
 
+    if not matches:
+        matches = [n for n in lastseen.keys() if name.lower() in n]
+
     if matches:
         d = lastseen[matches[0].lower()]
-        print "I have never seen someone called %s open the door. If you meant %s, they last opened the hackspace door on %s %s %s (%s ago)." % (
+        print "I have never seen someone called %s open the door. If you meant '%s', they last opened the hackspace door on %s %s %s (%s ago)." % (
             name,
             matches[0],
             d.strftime('%A'),
