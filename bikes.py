@@ -8,7 +8,4 @@ for dock in docks:
     dockstatus = urllib2.urlopen(dockurl)
     dock = json.load(dockstatus)
     dockstatus.close()
-    print 'Location:', dock["dockStation"]["name"]
-    print 'Bikes Available:', dock["dockStation"]["bikesAvailable"]
-    print 'Empty Slots:', dock["dockStation"]["emptySlots"]
-    print '\n'
+    print dock["dockStation"]["name"], '-- Bikes Available:', dock["dockStation"]["bikesAvailable"], '-- Empty Slots:', dock["dockStation"]["emptySlots"]
