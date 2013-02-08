@@ -36,18 +36,23 @@ PLACES = {
     ['pizza', 'tomato', 'tomatoes'],
   ('City Beverage Company', '303 Old Street'):
     ['beer', 'beer', 'wine'],
-  ('Last.fm', '1-11 Baches St'):
-    ['music'],
   ('Tesco Express', '79-85 Hackney Road'):
-    ['wine', 'cake', 'caek', 'jelly', 'beans'],
+    ['wine', 'cake', 'caek', 'jelly', 'beans', 'horsemeat', 'horses', 'horse'],
   ('The Four Vintners', '5-9 Kingsland Road'):
     ['wine'],
   ('Longdan Express', '25 Hackey Road'):
     ['chinese', 'beer', 'noodle', 'noodles'],
   ('Food Hall', '374-378 Old St'):
-    ['cheese', 'ham', 'bread', 'salami', 'chorizo'],
+    ['cheese', 'ham', 'bread', 'salami', 'chorizo', 'vegetables', 'veg',
+    'carrots', 'tomatoes', 'cabbage', 'cabbages', 'homeopathy', 'homeopathics'],
+  ('Hot Pot', 'Hackney Rd, nr Columbia Rd'):
+    ['italian','cafe'],
+  ('Moreti', '134 Kingsland Road'):
+    ['pasta', 'sandwich', 'sandwiches', 'panini', 'paninis', 'breakfast'],
+  ('Troyganic', '138 Kingsland Road'):
+    ['pasta', 'cheese', 'nuts', 'breakfast', 'vegetarian'],
   ('nowhere near Old St', "I'm afraid"):
-    ['sushi', 'jellied', 'eels', 'elephant', 'cat', 'dog', 'rats'],
+    ['sushi', 'jellied', 'eels', 'elephant', 'cat', 'dog', 'rat', 'rats', 'cockroaches', 'cockroach'],
 }
 
 def foodscore(food, foods):
