@@ -7,6 +7,7 @@ dates = {
   (2012,  3,  1): ('Warmongers', 'Gunmakers', 'EC1R 5ET'),
   (2012,  3, 29): ('Blue Marlin', 'The Fellow', 'N1 9AA'),
   (2012, 10,  4): ('Kernel Panic', 'The Old Fountain', 'EC1V 9NU'),
+  (2012, 11, 29): ('Shipping Forecast', 'The Ship Tavern', 'WC2A 3HP'),
 }
 
 def next_meet(fromd):
