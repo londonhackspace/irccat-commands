@@ -1,17 +1,13 @@
 #!/usr/bin/python
 
 import sys
-import requests
+from subprocess import Popen, PIPE
 from icalendar import Calendar
 from datetime import datetime
 
-try:
-    response = requests.get('http://london.pubstandards.com/next.ics', timeout=2)
-except requests.exceptions.Timeout:
-    print "Oh no %s, I can't see the pubstandards website! Is it down? Somebody shout at cackhanded for me." % sys.argv[1]
-    sys.exit(0)
+stdout, stderr = Popen(['php', '/usr/share/irccat/calendar.php'], stdout=PIPE, stderr=PIPE).communicate()
 
-cal = Calendar.from_ical(response.content)
+cal = Calendar.from_ical(stdout)
 
 for component in cal.walk():
     if component.name == "VEVENT":
