@@ -16,7 +16,7 @@ URL = 'http://closure.ath.cx/cliweather'
 
 place = ' '.join(argv[5:])
 if not place:
-    place = 'E2 8HD'
+    place = 'E2 9DY'
 
 api = 'http://www.google.com/ig/api?%s' % urlencode({'weather': place})
 
