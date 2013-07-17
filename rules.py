@@ -12,18 +12,20 @@ max_hackspace_rule = 20
 rules = {
 # London Hackspace
   '0': "Do not be on fire",
+  '-0': 'see Rule 0',
+  'abs(0)': "Do not be freeze dried",
 
-  '1': "Don't use power tools without briefing",
+  '1': "Work safely and stop others working unsafely",
   '2': "Don't defeat/hack safety features",
   '3': "Check the wiki. If in doubt: ask",
 
-  '4': "If something is broken, fix it; don't complain",
+  '4': "If something is broken, fix it; don't complain. If you can't, tell the trustees",
   '5': "If you're doing something major, ask the mailing list first",
 
-  '6': "Do not treat the Hackspace like your home. Sleeping in the space is forbidden",
+  '6': "Do not treat the Hackspace like your home. Sleeping is forbidden",
 
   '7': "Members may store things in the space but it must be in a box; one box per member",
-  '8': "Large items are allowed but must be cleared with the list first and labelled",
+  '8': "Large items must be cleared with the list first and labelled",
 
   '9': "Please don't donate crap",
   '10': "If you don't want something hacked label it as such",
@@ -39,6 +41,10 @@ rules = {
   '18': "If an item needs to be thrown put it in the 3 week box",
   '19': "Large items (that won't fit in the box) should be checked with the list before disposal",
   '20': "Check with the list before throwing useful items",
+
+# Russ
+  'russ': "never ascribe to malice that which can otherwise be explained by someone tidying stuff up",
+  'russ2': "every social problem in the hackspace inevitably devolves into people suggesting an over-engineered, over-complicated technological solution",
 
 # Red Dwarf:
   '003': "By joining Star Corps each individual tacitly consents to give up his inalienable rights "
@@ -108,8 +114,11 @@ rules = {
       "space", # "Gunmen of the Apocalypse"
   '39436175880932/C': "POW's have a right to non-violent constraint", # "Gunmen of the Apocalypse"
 
+# Not quite Red Dwarf
+  '426': 'You must not eat kippers while riding a donkey saw',
+
 # Star Trek
-  '33': "It never hurts to suck up to the boss",
+  #'33': "It never hurts to suck up to the boss",
   '45': "Expand or die",
   '208': "Sometimes the only thing more dangerous than a question is an answer",
   '285': "No good deed ever goes unpunished",
@@ -128,6 +137,8 @@ rules = {
 
 # 4chan/Rules of the Internet
   '-1': "/b/ is not your friend",
+  '32': "Pics or it didn't happen",
+  '33': "Lurk moar - it's never enough",
   '34': "If it exists, there is porn of it. No exceptions",
   '35': "If no porn is found of it, it will be made",
   '42': "Always bring your towel. No exceptions",
@@ -143,7 +154,7 @@ rules = {
   '502.9d': "Ignore this rule",
 
 # Automata
-  '30': "http://www.wolframalpha.com/input/?i=rule+30",
+  #'30': "http://www.wolframalpha.com/input/?i=rule+30",
   '90': "http://www.wolframalpha.com/input/?i=rule+90",
   '110': "http://www.wolframalpha.com/input/?i=rule+110",
   '184': "http://www.wolframalpha.com/input/?i=rule+184",
@@ -169,13 +180,30 @@ rules = {
 
 # LOTR
   '\xe2\x88\x98': "One Ring to rule them all, One Ring to find them,\n"
-                  "One Ring to bring them all and in the darkness bind them.",
+  "One Ring to bring them all and in the darkness bind them.",
+
+# IRC
+  '/kick': "Abusing the bots will result in a severe kicking.",
+
+# ATOC easements
+  '300393': "Customers travelling via Norwich using fares routed Irish Ferries may travel via Norwich.",
+  '300326': "Journeys via Ryde Hoverport must be routed HOVER TRAVEL.",
+
+# Misc
+  'Britannia' : "Britons never, never, never will be slaves",
+  'britannia' : "Britons never, never, never will be slaves",
+
+  'NaN': 'typeof NaN == "number"',
+  'nan': 'typeof NaN == "number"',
 }
 
 if len(argv) >= 5:
     arg = ' '.join(argv[5:])
 else:
     arg = argv[-1]
+
+if arg in ('e^(pi*i)', 'e^(i*pi)', 'e^i*pi', 'e^i\xcf\x80', 'e^\xcf\x80i'):
+    arg = '-1'
 
 if arg in ('help', '?', '-?'):
     print "Use ?rules <n> for a specific rule or ?rules to be PM'd all the rules"
