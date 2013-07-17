@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "http://xkcd.com/$5"
+echo "http://xkcd.com/$5/"
