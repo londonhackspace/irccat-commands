@@ -18,7 +18,10 @@ root = lxml.html.parse(site).getroot()
 amount = 0
 strings = []
 
-rows = root.xpath('//table[starts-with(@class, "nowraplinks collapsible autocollapse")]/tr')
+# If you're fixing this again, just use http://www.howmanypeopleareinspacerightnow.com/space.json
+
+
+rows = root.xpath('//table[@class="navbox"]//table[contains(@class, "navbox-inner")]/tr')
 
 for row in rows:
     orbiter = row.xpath('./th[@class="navbox-group"]')
