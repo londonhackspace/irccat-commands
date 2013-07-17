@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo http://wiki.hackspace.org.uk/wiki/Lab24
+echo http://wiki.hackspace.org.uk/wiki/447_Hackney_Road
