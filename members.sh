@@ -1,2 +1,1 @@
-#!/bin/bash
-echo http://wiki.hackspace.org.uk/wiki/Members
+subscribers.sh
