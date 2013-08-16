@@ -30,19 +30,31 @@ complaints = [
   '%s plural_verb(was) created by the cabal',
   'I have the right not to look at %s',
   '%s plural_verb(is) a conspiracy by the technological elite',
+  '%s plural_verb(is) destabilising the hackspace',
+  '%s plural_verb(is) off topic',
+  '%s plural_verb(is) morally tainted',
+  'Richard Stallman LOVES %s',
+  'Richard Stallman HATES %s',
 ]
 
 thing = ' '.join(sys.argv[5:])
 
 if thing:
+  
+  if 'cabal' in thing.lower():
+      print "THERE IS NO IRC CABAL"
+      sys.exit(0)
+
   p.num(1)
   try:
+    # if we can coerce the word to singular, it's probably plural
     if ' and ' in thing or p.singular_noun(thing):
       # NB breaks "saving [him and her]", and "the answer to the ultimate question of life, the universe, and everything"
       p.num(3)
   except Exception, e:
     try:
       singulars = [p.singular_noun(w) for w in thing.split(' ')]
+      singulars = [s for s in singulars if s not in ['thi']]
       if any(singulars):
         p.num(3)
     except:
