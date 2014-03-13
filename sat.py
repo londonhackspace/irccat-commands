@@ -9,14 +9,18 @@ if args:
 else:
   sys.exit(1)
 
-aliases = {
-  'iss': 'ISS (ZARYA)',
+sources = {
+    'norad': 'http://celestrak.com/NORAD/elements/stations.txt',
+    'kepler': 'http://mstl.atl.calpoly.edu/~ops/keps/kepler.txt',
 }
-if body in aliases:
-  body = aliases[body]
 
-url = 'http://celestrak.com/NORAD/elements/stations.txt'
-sat = fromtle(url, body)
+bodies = {
+  'iss': ('norad', 'ISS (ZARYA)'),
+  'kicksat': ('kepler', 'KickSat'),
+}
+source, alias = bodies[body]
+
+sat = fromtle(sources[source], alias)
 
 sat.compute(lhs)
 msg = 'Height %dkm, distance %dkm %skm/s, magnitude %s' % (
