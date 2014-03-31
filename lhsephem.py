@@ -25,7 +25,7 @@ def fromtle(url, body):
     raise KeyError('%s not found in %s' % (body, url))
 
 lhs = ephem.Observer()
-lhs.lat = '51.5303'
-lhs.long = '-0.0766'
+lhs.lat = '51.5322'
+lhs.long = '-0.0606'
 # base from http://www.daftlogic.com/sandbox-google-maps-find-altitude.htm
-lhs.elevation = 22 + 6 # +- 0.5m +- 2m
+lhs.elevation = 22 # +- 2m
