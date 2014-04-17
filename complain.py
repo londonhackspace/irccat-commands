@@ -8,33 +8,35 @@ p = inflect.engine()
 
 
 complaints = [
-  '%s plural_verb(is) Too Damn High',
-  'Only occupikeys like %s',
-  '%s plural_verb(causes) cancer',
-  '%s plural_verb(takes) up too much space',
-  '%s plural_verb(takes) up too much air',
-  'Nobody emailed the list about %s',
-  '%s should be banned',
-  'Noisebridge allows %s',
-  "People just can't be trusted with %s",
-  "%s plural_verb(wasn't) my idea",
-  '%s just plural_verb(needs) the rules to be enforced harder',
-  'Nobody understands %s',
-  '%s plural_verb(was) BORN FREE',
-  'Nobody listens to me about %s',
-  'Everyone just trolls about %s',
-  '%s plural_verb(is) a technical solution to a social problem',
-  'The silent majority hates %s',
-  '%s should only be available to gold members',
-  '%s only plural_verb(benefits) the elite',
-  '%s plural_verb(was) created by the cabal',
-  'I have the right not to look at %s',
-  '%s plural_verb(is) a conspiracy by the technological elite',
-  '%s plural_verb(is) destabilising the hackspace',
-  '%s plural_verb(is) off topic',
-  '%s plural_verb(is) morally tainted',
-  'Richard Stallman LOVES %s',
-  'Richard Stallman HATES %s',
+  u'%s plural_verb(is) Too Damn High',
+  u'Only occupikeys like %s',
+  u'%s plural_verb(causes) cancer',
+  u'%s plural_verb(takes) up too much space',
+  u'%s plural_verb(takes) up too much air',
+  u'Nobody emailed the list about %s',
+  u'%s should be banned',
+  u'Noisebridge allows %s',
+  u"People just can't be trusted with %s",
+  u"%s plural_verb(wasn't) my idea",
+  u'%s just plural_verb(needs) the rules to be enforced harder',
+  u'Nobody understands %s',
+  u'%s plural_verb(was) BORN FREE',
+  u'Nobody listens to me about %s',
+  u'Everyone just trolls about %s',
+  u'%s plural_verb(is) a technical solution to a social problem',
+  u'The silent majority hates %s',
+  u'%s should only be available to gold members',
+  u'%s only plural_verb(benefits) the elite',
+  u'%s plural_verb(was) created by the cabal',
+  u'I have the right not to look at %s',
+  u'%s plural_verb(is) a conspiracy by the technological elite',
+  u'%s plural_verb(is) destabilising the hackspace',
+  u'%s plural_verb(is) off topic',
+  u'%s plural_verb(is) morally tainted',
+  u'Richard Stallman LOVES %s',
+  u'Richard Stallman HATES %s',
+  u'%s plural_verb(is) an embarrassment to the international hacker community',
+  u'%s is peddled by M\xfcnchausen lovies',
 ]
 
 thing = ' '.join(sys.argv[5:])
@@ -60,4 +62,10 @@ if thing:
     except:
       pass
 
-  print p.inflect(random.choice(complaints) % thing).capitalize()
+  complaint = random.choice(complaints)
+  if complaint.startswith('%s'):
+    thing = thing.capitalize()
+  else:
+    thing = thing.lower()
+
+  print p.inflect(complaint % thing).encode('utf-8')
