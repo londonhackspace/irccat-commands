@@ -4,8 +4,6 @@ import random
 import sys
 import inflect
 
-p = inflect.engine()
-
 
 complaints = [
   u'%s plural_verb(is) Too Damn High',
@@ -47,16 +45,19 @@ if thing:
       print "THERE IS NO IRC CABAL"
       sys.exit(0)
 
+  p = inflect.engine()
+
   p.num(1)
   try:
     # if we can coerce the word to singular, it's probably plural
     if ' and ' in thing or p.singular_noun(thing):
-      # NB breaks "saving [him and her]", and "the answer to the ultimate question of life, the universe, and everything"
+      # NB breaks "doing this and that", and "the answer to the ultimate question of life, the universe, and everything"
       p.num(3)
   except Exception, e:
     try:
+      spurious_singulars = ['thi']
       singulars = [p.singular_noun(w) for w in thing.split(' ')]
-      singulars = [s for s in singulars if s not in ['thi']]
+      singulars = [s for s in singulars if s not in spurious_singulars]
       if any(singulars):
         p.num(3)
     except:
