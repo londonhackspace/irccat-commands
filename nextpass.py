@@ -15,6 +15,7 @@ def print_nextpass(sat, loc):
         # ['ISS (ZARYA)', '1 25544U 98067A   14122.59948867 -.00006135  00000-0 -10042-3 0  2019', '2 25544  51.6474 325.5221 0002530 329.3158 128.9928 15.49779978884252']
         # at 2014/5/2 17:51:17
         # I also don't really understand why nextpass varies based on the date you pass in
+        # There was also an occasion where rt < st < tt
         return
 
     rt, tt, st = [d.datetime().replace(tzinfo=utc) for d in [rt, tt, st]]
