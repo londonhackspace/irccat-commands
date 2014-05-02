@@ -1,6 +1,51 @@
 #!/usr/bin/env python
-from lhsephem import fromtle, lhs
-import sys
+from lhsephem import getbody, lhs
+import sys, math
+import requests
+from lxml import etree, objectify
+
+def revgeocode(lat, lng):
+    # http://www.geonames.org/export/web-services.html
+    resp = requests.get('http://api.geonames.org/extendedFindNearby', params={'lat': lat, 'lng': lng, 'username': 'ms7821'})
+    root = objectify.fromstring(resp.content)
+    #print resp.content
+
+    if hasattr(root, 'geoname'):
+        # http://www.geonames.org/export/codes.html
+        geonames = list(root.geoname)
+        """
+        <name>Earth</name>
+        <fcl>L</fcl>
+        <fcode>AREA</fcode>
+
+        <name>Africa</name>
+        <fcl>L</fcl>
+        <fcode>CONT</fcode>
+
+        <name>Libya</name>
+        <fcl>A</fcl>
+        <fcode>PCLI</fcode>
+
+        <name>Al \u2018Uwayn\u0101t</name>
+        <fcl>P</fcl>
+        <fcode>PPL</fcode>
+        """
+        if len(geonames) < 3:
+            return geonames[-1].name
+        # We don't care about province names - country is more meaningful
+        if len(geonames) < 5:
+            return geonames[2].name
+        return '%s, %s' % (geonames[4].name, geonames[2].name)
+
+    elif hasattr(root, 'address'):
+        # http://www.geonames.org/maps/us-reverse-geocoder.html#findNearestAddress
+        return '%s, %s' % (root.address.placename, root.address.adminName1)
+    elif hasattr(root, 'country'):
+        # http://www.geonames.org/export/web-services.html#countrysubdiv
+        return root.countryName
+    elif hasattr(root, 'ocean'):
+        # http://www.geonames.org/export/web-services.html#ocean
+        return root.ocean.name
 
 args = sys.argv[5:]
 
@@ -9,26 +54,28 @@ if args:
 else:
   sys.exit(1)
 
-sources = {
-    'norad': 'http://celestrak.com/NORAD/elements/stations.txt',
-    'kepler': 'http://mstl.atl.calpoly.edu/~ops/keps/kepler.txt',
-}
-
-bodies = {
-  'iss': ('norad', 'ISS (ZARYA)'),
-  'kicksat': ('kepler', 'KickSat'),
-}
-source, alias = bodies[body]
-
-sat = fromtle(sources[source], alias)
-
+sat = getbody(body)
 sat.compute(lhs)
-msg = 'Height %dkm, distance %dkm %skm/s, magnitude %s' % (
-  round(sat.elevation / 1000), round(sat.range / 1000),
-  round(sat.range_velocity / 1000, 2), sat.mag
+
+lat = sat.sublat / math.pi * 180
+lng = (sat.sublong / math.pi * 180 + 180) % 360 - 180
+
+loc = revgeocode(lat, lng)
+
+location_msg = ' (%s)' % loc if loc else ''
+eclipsed_msg = ', eclipsed' if sat.eclipsed else ''
+
+msg = '%dkm above %s,%s%s, distance %dkm %skm/s, magnitude %s%s (orbit as of %s)' % (
+  round(sat.elevation / 1000),
+  round(lat, 3),
+  round(lng, 3),
+  location_msg,
+  round(sat.range / 1000),
+  round(sat.range_velocity / 1000, 2),
+  sat.mag,
+  eclipsed_msg,
+  sat._epoch.datetime().strftime('%Y-%m-%d %H:%M'),
 )
 
-if sat.eclipsed:
-  msg += ', eclipsed'
 
 print msg

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from lhsephem import fromtle, lhs
+from lhsephem import getbody, lhs, compass
 import sys, math
 from pytz import timezone, utc
 
@@ -10,14 +10,7 @@ if args:
 else:
   sys.exit(1)
 
-aliases = {
-  'iss': 'ISS (ZARYA)',
-}
-if body in aliases:
-  body = aliases[body]
-
-url = 'http://celestrak.com/NORAD/elements/stations.txt'
-sat = fromtle(url, body)
+sat = getbody(body)
 
 lhs.horizon = '30'
 
@@ -26,8 +19,8 @@ sat.compute(lhs)
 rt, ra, tt, ta, st, sa = lhs.next_pass(sat)
 
 london = timezone('Europe/London')
-rt, tt, st = map(lambda d: d.datetime().replace(tzinfo=utc), (rt, tt, st))
-rt, tt, st = map(lambda d: d.astimezone(london), (rt, tt, st))
+rt, tt, st = [d.datetime().replace(tzinfo=utc) for d in [rt, tt, st]]
+rt, tt, st = [d.astimezone(london) for d in [rt, tt, st]]
 
 def reldt(curr, prev=None):
   
@@ -35,15 +28,6 @@ def reldt(curr, prev=None):
     return curr.strftime('%H:%M:%S')
 
   return curr.strftime('%d/%m/%Y %H:%M:%S')
-
-
-def compass(angle):
-  bearings = [
-    'N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE',
-    'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW',
-  ]
-  sect = int(round(angle / (2 * math.pi) * len(bearings))) % len(bearings)
-  return bearings[sect]
 
 
 msg = u'%s rise %s %s, transit %s alt %d\xb0, set %s %s %s' % (
