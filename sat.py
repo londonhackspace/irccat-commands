@@ -47,6 +47,31 @@ def revgeocode(lat, lng):
         # http://www.geonames.org/export/web-services.html#ocean
         return root.ocean.name
 
+
+def print_location(sat):
+    lat = sat.sublat / math.pi * 180
+    lng = (sat.sublong / math.pi * 180 + 180) % 360 - 180
+
+    loc = revgeocode(lat, lng)
+
+    location_msg = ' (%s)' % loc if loc else ''
+    eclipsed_msg = ', eclipsed' if sat.eclipsed else ''
+
+    msg = '%dkm above %s,%s%s, distance %dkm %skm/s, magnitude %s%s (orbit as of %s)' % (
+      round(sat.elevation / 1000),
+      round(lat, 3),
+      round(lng, 3),
+      location_msg,
+      round(sat.range / 1000),
+      round(sat.range_velocity / 1000, 2),
+      sat.mag,
+      eclipsed_msg,
+      sat._epoch.datetime().strftime('%Y-%m-%d %H:%M'),
+    )
+
+    print msg.encode('utf-8')
+
+
 args = sys.argv[5:]
 
 if args:
@@ -54,28 +79,15 @@ if args:
 else:
   sys.exit(1)
 
+
+
 sat = getbody(body)
 sat.compute(lhs)
+print_location(sat)
 
-lat = sat.sublat / math.pi * 180
-lng = (sat.sublong / math.pi * 180 + 180) % 360 - 180
-
-loc = revgeocode(lat, lng)
-
-location_msg = ' (%s)' % loc if loc else ''
-eclipsed_msg = ', eclipsed' if sat.eclipsed else ''
-
-msg = '%dkm above %s,%s%s, distance %dkm %skm/s, magnitude %s%s (orbit as of %s)' % (
-  round(sat.elevation / 1000),
-  round(lat, 3),
-  round(lng, 3),
-  location_msg,
-  round(sat.range / 1000),
-  round(sat.range_velocity / 1000, 2),
-  sat.mag,
-  eclipsed_msg,
-  sat._epoch.datetime().strftime('%Y-%m-%d %H:%M'),
-)
+#for i in range(30):
+#    lhs.date = '2014/5/2 17:39:%s' % i
+#    sat.compute(lhs)
+#    print_location(sat)
 
 
-print msg
