@@ -34,10 +34,13 @@ complaints = [
   u'Richard Stallman LOVES %s',
   u'Richard Stallman HATES %s',
   u'%s plural_verb(is) an embarrassment to the international hacker community',
-  u'%s is peddled by M\xfcnchausen lovies',
+  u'%s plural_verb(is) peddled by M\xfcnchausen lovies',
+  u'%s plural_verb(is) unexcellent',
+  u'%s plural_verb(is) on the rise',
+  u'%s plural_verb(brings) smelly hackers to the space',
 ]
 
-thing = ' '.join(sys.argv[5:])
+thing = ' '.join(sys.argv[5:]).decode('utf-8')
 
 if thing:
   
@@ -47,26 +50,27 @@ if thing:
 
   p = inflect.engine()
 
+  spurious_singulars = ['thi', 'cadmu']
   p.num(1)
   try:
     # if we can coerce the word to singular, it's probably plural
     if ' and ' in thing or p.singular_noun(thing):
-      # NB breaks "doing this and that", and "the answer to the ultimate question of life, the universe, and everything"
-      p.num(3)
+      if p.singular_noun(thing).lower() not in spurious_singulars:
+        # NB breaks "doing this and that", and "the answer to the ultimate question of life, the universe, and everything"
+        p.num(3)
   except Exception, e:
     try:
-      spurious_singulars = ['thi']
       singulars = [p.singular_noun(w) for w in thing.split(' ')]
-      singulars = [s for s in singulars if s not in spurious_singulars]
+      singulars = [s for s in singulars if s.lower() not in spurious_singulars]
       if any(singulars):
         p.num(3)
     except:
       pass
 
   complaint = random.choice(complaints)
-  if complaint.startswith('%s'):
-    thing = thing.capitalize()
-  else:
-    thing = thing.lower()
+  if thing.lower() == thing:
+    if complaint.startswith('%s'):
+      thing = thing[0].upper() + thing[1:]
 
   print p.inflect(complaint % thing).encode('utf-8')
+
