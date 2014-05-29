@@ -42,6 +42,15 @@ complaints = [
 
 thing = ' '.join(sys.argv[5:]).decode('utf-8')
 
+def spurious_singular(word):
+    word = word.lower()
+    if word.endswith('u'):
+        # cactus, virus, etc.
+        return True
+    if word in ['thi']:
+        return True
+    return False
+
 if thing:
   
   if 'cabal' in thing.lower():
@@ -50,18 +59,19 @@ if thing:
 
   p = inflect.engine()
 
-  spurious_singulars = ['thi', 'cadmu']
+
+
   p.num(1)
   try:
     # if we can coerce the word to singular, it's probably plural
     if ' and ' in thing or p.singular_noun(thing):
-      if p.singular_noun(thing).lower() not in spurious_singulars:
+      if not spurious_singular(p.singular_noun(thing)):
         # NB breaks "doing this and that", and "the answer to the ultimate question of life, the universe, and everything"
         p.num(3)
   except Exception, e:
     try:
       singulars = [p.singular_noun(w) for w in thing.split(' ')]
-      singulars = [s for s in singulars if s.lower() not in spurious_singulars]
+      singulars = [s for s in singulars if not spurious_singular(s)]
       if any(singulars):
         p.num(3)
     except:
