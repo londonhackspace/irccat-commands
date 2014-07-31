@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import random
 
 '''
@@ -43,7 +45,7 @@ times = [
     'noon', 'sunrise', 'sunset'
 ]
 adj_misc = [
-    'closed', 'common', 'millenium', 'misty', 'open', 'quantum', 'rare',
+    'closed', 'common', 'millennium', 'misty', 'open', 'quantum', 'rare',
     'secret', 'space', 'winding', 'windy'
 ]
 
@@ -61,14 +63,14 @@ for group in adjective_groups:
 # Nouns
 animals = [
     'badger', 'boar', 'bunny', 'cat', 'dolphin', 'donkey', 'dragon', 'duck',
-    'falcon', 'ferret', 'fox', 'fox', 'gopher', 'hawk', 'hawkmoth', 'jay',
-    'lizard', 'minnow', 'monkey', 'otter', 'panda', 'parrot', 'parrot',
+    'falcon', 'ferret', 'fox', 'gopher', 'hawk', 'hawkmoth', 'jay',
+    'lizard', 'minnow', 'monkey', 'otter', 'panda', 'parrot',
     'peacock', 'platypus', 'poodle', 'possum', 'rabbit', 'rhino', 'setter',
     'shark', 'slug', 'tiger', 'unicorn', 'vixen'
 ]
 architecture = [
     'arch', 'bank', 'ceiling', 'column', 'dome', 'door', 'doorway', 'elevator',
-    'esculator', 'gate', 'gateway', 'tower', 'verge'
+    'escalator', 'gate', 'gateway', 'tower', 'verge'
 ]
 body_parts = [
     'beard', 'cheeks', 'cloaca', 'eye', 'fist', 'foot', 'hand', 'heart', 'mouth',
@@ -85,15 +87,15 @@ coding = [
     'array', 'function', 'integer', 'loop', 'macro'
 ]
 collectives = [
-    'army', 'battlion', 'clowder', 'cluster', 'colony', 'congregation',
+    'army', 'battalion', 'clowder', 'cluster', 'colony', 'congregation',
     'flock', 'herd', 'majority', 'minority', 'pack', 'parliament', 'swarm',
     'tribe', 'troop'
 ]
 geography = [
-    'cliff', 'mountain', 'lagoon','pool', 'river', 'rock', 'sea', 'stream'
+    'cliff', 'mountain', 'lagoon', 'pool', 'river', 'rock', 'sea', 'stream'
 ]
 jobs = [
-    'archer', 'astronaut', 'beekeeper', 'bishop', 'diver', 'driver', 'envoy',
+    'archer', 'astronaut', 'beekeeper', 'bishop', 'diver', 'driver', 'drover', 'envoy',
     'joker', 'king', 'knight', 'prince', 'queen', 'ranger', 'senator', 'warden',
     'warrior', 'wizard'
 ]
@@ -104,17 +106,17 @@ names = [
 plants = [
     'apple', 'bamboo', 'barley', 'birch', 'blossom', 'branch', 'bush', 'cabbage',
     'cedar', 'crop', 'flax', 'garland', 'garlic', 'ginger', 'grass', 'lemon',
-    'lily', 'mahagony', 'oak', 'orchid', 'palm', 'rose', 'rosette', 'thistle',
+    'lily', 'mahogany', 'oak', 'orchid', 'palm', 'rose', 'rosette', 'thistle',
     'tree', 'tulip', 'walnut', 'willow'
 ]
 religion = [
     'angel', 'devil', 'satan'
 ]
 sailing = [
-    'anchor', 'boye', 'gallion', 'yacht'
+    'anchor', 'boye', 'galleon', 'yacht'
 ]
 space = [
-    'asteroid', 'comet', 'moon', 'planet', 'satelite', 'star', 'station', 'sun'
+    'asteroid', 'comet', 'moon', 'planet', 'satellite', 'star', 'station', 'sun'
 ]
 titles = [
     'duchess', 'duke', 'knave', 'provost'
@@ -131,7 +133,7 @@ weather = [
 ]
 noun_misc = [
     'banner', 'bottle', 'bracket', 'brick', 'carpet', 'cheese', 'cocktail',
-    'corkscrew', 'drover', 'duster', 'flag', 'flannel', 'flash', 'garter',
+    'corkscrew', 'duster', 'flag', 'flannel', 'flash', 'garter',
     'hammer', 'hammock', 'harvest', 'light', 'passion', 'pound', 'putter',
     'riband', 'salad', 'shadow', 'sparkler', 'streak', 'study', 'sugar',
     'ticket', 'toffee', 'water'
