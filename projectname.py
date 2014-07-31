@@ -113,7 +113,7 @@ religion = [
     'angel', 'devil', 'satan'
 ]
 sailing = [
-    'anchor', 'boye', 'galleon', 'yacht'
+    'anchor', 'buoy', 'galleon', 'yacht'
 ]
 space = [
     'asteroid', 'comet', 'moon', 'planet', 'satellite', 'star', 'station', 'sun'
