@@ -23,6 +23,7 @@ complaints = [
   u'Everyone just trolls about %s',
   u'%s plural_verb(is) a technical solution to a social problem',
   u'The silent majority hates %s',
+  u'%s was banned by the fun police',
   u'%s should only be available to gold members',
   u'%s only plural_verb(benefits) the elite',
   u'%s plural_verb(was) created by the cabal',
@@ -38,16 +39,22 @@ complaints = [
   u'%s plural_verb(is) unexcellent',
   u'%s plural_verb(is) on the rise',
   u'%s plural_verb(brings) smelly hackers to the space',
+# nobody's ever used this complaint  u'%s secretly plural_verb(hates) the Computer',
+  u'%s plural_verb(is) what the Failing List is all about',
+  u'%s plural_verb(is) a very serious concern and must be addressed urgently',
+  u'%s plural_verb(is) not a permitted activity',
+  u'%s plural_verb(requires) an official trustee-backed request',
+  u'%s plural_verb(isn\'t) in the interest of the Hackspace\'s shareholders',
 ]
 
 thing = ' '.join(sys.argv[5:]).decode('utf-8')
 
 def spurious_singular(word):
     word = word.lower()
-    if word.endswith('u'):
-        # cactus, virus, etc.
+    if word.endswith('u') or word.endswith('nes'):
+        # cactus, virus, darkness, etc.
         return True
-    if word in ['thi']:
+    if word in ['thi', 'stratasy']:
         return True
     return False
 
@@ -58,7 +65,6 @@ if thing:
       sys.exit(0)
 
   p = inflect.engine()
-
 
 
   p.num(1)
