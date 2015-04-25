@@ -8,18 +8,29 @@ random.seed()
 PLACES = {
   ('Bumsmiths', '31 Coate St'):
     ['burgers', 'burger', 'pulled pork', 'slaw', 'coleslaw'],
-  ('Simply The Best', '157 Hackney Road'):
-    ['chips', 'fish', 'pie', 'sausage'],
+  ('Hurwundeki', '298-299 Cambridge Heath Road'):
+    ['korean', 'bibimbap', 'kimchi', 'noodle', 'noodles', 'udon', 'pancake', 'pancakes',
+     'dumpling', 'dumplings', 'bulgogi', 'haircut', 'haircuts'],
+  ('Mother Kelly\'s', '251 Paradise Row'):
+    ['beer'] * 5 + ['cheese', 'ham'],
+  ('Japanese Canteen', '255 Paradise Row'):
+    ['sushi', 'noodle', 'noodles', 'ramen', 'donburi', 'fried chicken', 'chicken',
+     'bibimbap', 'kimchi', 'sashimi'],
+  ('Ra\xc3\xadzes', '460 Hackney Road'):
+    ['meat', 'rodizio', 'grill', 'brasilian', 'brazilian', 'brasil', 'brazil', 'fish'],
+  ('Cafe Maloka', '62, Broadway Market'):
+    ['vegetarian', 'vegan', 'coffee', 'cake', 'caek', 'tea', 'salad'],
+  ('Billy\'s Cafe'):
+    ['chips', 'egg', 'bacon', 'beans', 'sausage', 'spam', 'fry-up',
+     'full english', 'english breakfast', 'breakfast', 'toast'],
+  ('Broadway Fish Bar', '8 Broadway Market'):
+    ['chips', 'fish', 'pie'],
   ('Tesco Express', '79-85 Hackney Road'):
     ['wine', 'cake', 'caek', 'jelly', 'beans', 'horsemeat', 'horses', 'horse'],
-  ('Longdan Express', '25 Hackey Road'):
-    ['chinese', 'beer', 'noodle', 'noodles'],
-  ('Hot Pot', 'Hackney Rd, nr Columbia Rd'):
-    ['italian','cafe'],
   ('Ridley Road Market', 'Dalston'):
     ['bushmeat', 'buffalo', 'kangaroo', 'pygmy', 'crocodile'],
   ('nowhere near Hackney Road', "I'm afraid"):
-    ['sushi', 'jellied', 'eels', 'elephant', 'cat', 'dog', 'rat', 'rats', 'cockroaches', 'cockroach'],
+    ['jellied', 'eels', 'elephant', 'cat', 'dog', 'rat', 'rats', 'cockroaches', 'cockroach'],
 }
 
 def foodscore(food, foods):
