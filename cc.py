@@ -107,18 +107,21 @@ try:
 except IndexError:
     type = random.choice(['mastercard', 'visa', 'amex'])
 
+cvv_length = 3
+
 if (type == 'mastercard'):
     prefix = mastercardPrefixList
 elif (type == 'visa'):
     prefix = visaPrefixList
 elif (type == 'amex'):
     prefix = amexPrefixList
+    cvv_length = 4
 else:
     type = 'mastercard'
     prefix = mastercardPrefixList
 
 ccv = []
-for i in range(3):
+for i in range(cvv_length):
     ccv.append(generator.choice(['0',  '1', '2', '3', '4', '5', '6', '7', '8', '9']))
 
 number = credit_card_number(generator, prefix, 16)
