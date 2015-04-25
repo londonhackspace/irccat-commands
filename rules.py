@@ -27,7 +27,7 @@ rules = {
   '7': "Members may store things in the space but it must be in a box; one box per member",
   '8': "Large items must be cleared with the list first and labelled",
 
-  '9': "Please don't donate crap",
+  '9': "Please don't donate stuff without advance notification on the ML",
   '10': "If you don't want something hacked label it as such",
   '11': "If something looks valuable check before hacking",
   '12': "Don't take tools without asking the mailing list first",
@@ -132,7 +132,7 @@ rules = {
   'six': "There is no rule six",
 
 # Urban Dictionary
-  '21': "All numbers pertaining to a rule are completely and utterly random",
+  #'21': "All numbers pertaining to a rule are completely and utterly random",
   '1138': "No matter how dumb something in Star Wars or its accompanying expanded universe is, there is ALWAYS something dumber.",
 
 # 4chan/Rules of the Internet
@@ -165,7 +165,7 @@ rules = {
   #'27': "I will never build only one of anything important. All important systems will have "
   #      "redundant control panels and power supplies. For the same reason I will always carry "
   #      "at least two fully loaded weapons at all times",
-  '30': "I will be neither chivalrous nor sporting. If I have an unstoppable superweapon, I will "
+  '40': "I will be neither chivalrous nor sporting. If I have an unstoppable superweapon, I will "
         "use it as early and as often as possible instead of keeping it in reserve",
   '46': 'If an advisor says to me "My liege, he is but one man. What can one man possibly do?", '
         'I will reply "This", and kill the advisor',
@@ -174,9 +174,15 @@ rules = {
   '59': "I will never build a sentient computer smarter than I am",
   '67': "No matter how many shorts we have in the system, my guards will be instructed to treat "
         "every surveillance camera malfunction as a full-scale emergency",
-  '96': "My door mechanisms will be designed so that blasting the control panel on the outside "
-      "seals the door and blasting the control panel on the inside opens the door, not vice versa",
+  #'96': "My door mechanisms will be designed so that blasting the control panel on the outside "
+  #    "seals the door and blasting the control panel on the inside opens the door, not vice versa",
   '99': "Any data file of crucial importance will be padded to 1.45MB in size",
+
+# Seventy Maxims of Maximally Effective Mercenaries (http://www.schlockmercenary.com/)
+  '21': "Give a man a fish, feed him for a day. Take his fish away and tell him he's lucky just "
+        "to be alive, and he'll figure out how to catch another one for you to take tomorrow.",
+  '37': "There is no 'overkill.' There is only 'open fire' and 'I need to reload.'",
+  '41': '"Do you have a backup?" means "I can\'t fix this."',
 
 # LOTR
   '\xe2\x88\x98': "One Ring to rule them all, One Ring to find them,\n"
@@ -189,12 +195,17 @@ rules = {
   '300393': "Customers travelling via Norwich using fares routed Irish Ferries may travel via Norwich.",
   '300326': "Journeys via Ryde Hoverport must be routed HOVER TRAVEL.",
 
+# XKCD
+  'social\xc2\xb7b.99.1': 'If friends spend more than 60 minutes deciding what to do, they must default to sexual experimentation.',
+
 # Misc
   'Britannia' : "Britons never, never, never will be slaves",
   'britannia' : "Britons never, never, never will be slaves",
 
   'NaN': 'typeof NaN == "number"',
   'nan': 'typeof NaN == "number"',
+
+  'jwz': 'Every program attempts to expand until it can read mail. Those programs which cannot so expand are replaced by ones which can.',
 }
 
 if len(argv) >= 5:
@@ -202,14 +213,20 @@ if len(argv) >= 5:
 else:
     arg = argv[-1]
 
+
 if arg in ('e^(pi*i)', 'e^(i*pi)', 'e^i*pi', 'e^i\xcf\x80', 'e^\xcf\x80i'):
     arg = '-1'
+
+if arg in ('99.1', 'b.99.1', 'social.b.99.1'):
+    arg = 'social\xc2\xb7b.99.1'
+
 
 if arg in ('help', '?', '-?'):
     print "Use ?rules <n> for a specific rule or ?rules to be PM'd all the rules"
 
 elif arg in rules:
-    print "Rule %s: %s" % (arg, rules[arg])
+    msg = u"Rule %s: %s" % (arg.decode('utf-8'), rules[arg].decode('utf-8'))
+    print msg.encode('utf-8')
 
 else:
     if False:
