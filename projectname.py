@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import random
+import sys
 
 '''
 # IDEAS
@@ -9,18 +10,22 @@ import random
 
 
 # Adjectives-ish
+alignment = [
+    'chaotic', 'dark', 'lawful', 'light', 'neutral'
+]
 behaviours = [
-    'bold', 'brave', 'clumsy', 'forgetful', 'rampant'
+    'bold', 'brave', 'clumsy', 'forgetful', 'lame', 'rampant'
 ]
 colours = [
     'black', 'blue', 'brown', 'green', 'indigo', 'jade', 'orange',
     'pink', 'purple', 'red', 'violet', 'yellow', 'crimson', 'magenta',
-    'silver', 'chartreuse']
+    'silver', 'chartreuse'
+]
 emotions = [
     'angry', 'delighted', 'manic', 'sad'
 ]
 flavours = [
-    'spearmint'
+    'spearmint', 'chocolate', 'vanilla'
 ]
 materials = [
     'concrete', 'cotton', 'diamond', 'emerald', 'glass', 'granite', 'grassy',
@@ -45,12 +50,12 @@ times = [
     'noon', 'sunrise', 'sunset'
 ]
 adj_misc = [
-    'closed', 'common', 'millennium', 'misty', 'open', 'quantum', 'rare',
-    'secret', 'space', 'winding', 'windy'
+    'closed', 'common', 'millennium', 'misty', 'naked', 'open', 'quantum', 'rare',
+    'secret', 'space', 'winding', 'windy', 'super', 'turbo'
 ]
 
 adjective_groups = [
-    behaviours, colours, emotions, flavours, materials, sensations, seasons,
+    alignment, behaviours, colours, emotions, flavours, materials, sensations, seasons,
     sounds, sizes, times, adj_misc
 ]
 
@@ -64,7 +69,7 @@ for group in adjective_groups:
 animals = [
     'badger', 'boar', 'bunny', 'cat', 'dolphin', 'donkey', 'dragon', 'duck',
     'falcon', 'ferret', 'fox', 'gopher', 'hawk', 'hawkmoth', 'jay',
-    'lizard', 'minnow', 'monkey', 'otter', 'panda', 'parrot',
+    'lizard', 'minnow', 'monkey', 'neko', 'otter', 'panda', 'parrot',
     'peacock', 'platypus', 'poodle', 'possum', 'rabbit', 'rhino', 'setter',
     'shark', 'slug', 'tiger', 'unicorn', 'vixen'
 ]
@@ -74,20 +79,20 @@ architecture = [
 ]
 body_parts = [
     'beard', 'cheeks', 'cloaca', 'eye', 'fist', 'foot', 'hand', 'heart', 'mouth',
-    'neck'
+    'neck', 'tooth'
 ]
 buildings = [
     'church', 'clock', 'firehouse', 'graveyard', 'inn', 'lighthouse',
     'school', 'tavern', 'temple', 'windmill'
 ]
 clothing = [
-    'garter', 'jacket', 'shoes', 'top', 'veil'
+    'garter', 'jacket', 'riband', 'shoes', 'sneaker', 'top', 'veil'
 ]
 coding = [
     'array', 'function', 'integer', 'loop', 'macro'
 ]
 collectives = [
-    'army', 'battalion', 'clowder', 'cluster', 'colony', 'congregation',
+    'army', 'battalion', 'cabal', 'clowder', 'cluster', 'colony', 'congregation',
     'flock', 'herd', 'majority', 'minority', 'pack', 'parliament', 'swarm',
     'tribe', 'troop'
 ]
@@ -96,15 +101,15 @@ geography = [
 ]
 jobs = [
     'archer', 'astronaut', 'beekeeper', 'bishop', 'diver', 'driver', 'drover', 'envoy',
-    'joker', 'king', 'knight', 'prince', 'queen', 'ranger', 'senator', 'warden',
-    'warrior', 'wizard'
+    'herald', 'joker', 'king', 'knight', 'overlord', 'prince', 'queen', 'ranger', 'sailor', 'senator', 
+    'warden', 'warrior', 'wizard'
 ]
 names = [
-    'Dean', 'Hebe', 'Herald', 'Jack', 'Janet', 'Maria', 'Pippin', 'Thor', 'Vesta',
+    'Dean', 'Hebe', 'Jack', 'Janet', 'Maria', 'Pippin', 'Thor', 'Vesta',
     'William', 'Zeus'
 ]
 plants = [
-    'apple', 'bamboo', 'barley', 'birch', 'blossom', 'branch', 'bush', 'cabbage',
+    'apple', 'bamboo', 'barley', 'birch', 'blossom', 'bush', 'cabbage',
     'cedar', 'crop', 'flax', 'garland', 'garlic', 'ginger', 'grass', 'lemon',
     'lily', 'mahogany', 'oak', 'orchid', 'palm', 'rose', 'rosette', 'thistle',
     'tree', 'tulip', 'walnut', 'willow'
@@ -122,30 +127,39 @@ titles = [
     'duchess', 'duke', 'knave', 'provost'
 ]
 vehicles = [
-    'bus', 'rocket', 'tank', 'wagon'
+    'bus', 'ironclad', 'rocket', 'tank', 'trike', 'wagon'
 ]
 weapons = [
     'arrow', 'axe', 'bow', 'club', 'crossbow', 'halbard', 'mace', 'pike',
     'rapier', 'shield', 'spear', 'sword', 'trident'
 ]
 weather = [
-    'aurora', 'sky'
+    'aurora', 'bolt', 'hail', 'lightning', 'snow', 'sky', 'storm', 'thunder'
 ]
+
 noun_misc = [
     'banner', 'bottle', 'bracket', 'brick', 'carpet', 'cheese', 'cocktail',
     'corkscrew', 'duster', 'flag', 'flannel', 'flash', 'garter',
-    'hammer', 'hammock', 'harvest', 'light', 'passion', 'pound', 'putter',
-    'riband', 'salad', 'shadow', 'sparkler', 'streak', 'study', 'sugar',
+    'hammer', 'hammock', 'harvest', 'passion', 'putter',
+    'salad', 'shadow', 'sparkler', 'study', 'sugar',
     'ticket', 'toffee', 'water'
 ]
 
 noun_groups = [
     animals, architecture, body_parts, coding, collectives, geography, jobs,
-    names, plants, sailing, space, titles, vehicles, weapons, weather, noun_misc
+    names, plants, religion, sailing, space, titles, vehicles, weapons, weather, noun_misc
 ]
 nouns = []
 for group in noun_groups:
     nouns += group
+
+
+# Verbs
+verbs = [
+    'date', 'plough', 'pound', 'punch', 'spin', 'sprint', 'streak',
+    'strike'
+]
+
 
 
 def weighted_choice(items):
@@ -185,21 +199,26 @@ def pick_two_nouns(noun_groups):
 
 
 
-def pick_words(noun_groups, adjectives):
+def pick_words(noun_groups, adjectives, verbs):
     '''
     Return a list of some chosen terms from the nouns and adjectives.
     '''
 
     # Certain options should be more likely than others i.e adj noun most common
-    options = [('adj double noun', 1), ('double noun', 3), ('adjective noun', 6)]
+    options = [('noun verb', 1), ('adj double noun', 1), ('double noun', 3), ('adjective noun', 6)]
     option = weighted_choice(options)
 
     if option == 'double noun':
         return pick_two_nouns(noun_groups)
-    if option == 'adj double noun':
+    elif option == 'adj double noun':
         adj = random.choice(adjectives)
         nouns = pick_two_nouns(noun_groups)
         return [adj] + nouns
+    elif option == 'noun verb':
+        noun_group = random.choice(noun_groups)
+        noun = random.choice(noun_group)
+        verb = random.choice(verbs)
+        return [noun, verb]
 
     adj = random.choice(adjectives)
     noun_group = random.choice(noun_groups)
@@ -208,9 +227,17 @@ def pick_words(noun_groups, adjectives):
 
 
 
-terms = pick_words(noun_groups, adjectives)
+terms = pick_words(noun_groups, adjectives, verbs)
+phrase = "Your project name is {0}"
+
+if len(sys.argv) > 5:
+    term = ' '.join(sys.argv[5:])
+    if term not in adjectives or term not in nouns or term not in verbs:
+        noun_groups.append([term])
+    while term not in terms:
+        terms = pick_words(noun_groups, adjectives, verbs)
 
 name = ' '.join(terms).upper()
-phrase = "Your project name is {0}".format(name)
+phrase = phrase.format(name)
 print phrase
 
