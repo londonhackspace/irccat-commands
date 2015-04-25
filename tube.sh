@@ -1,3 +1,2 @@
-#!/bin/bash
-
-echo http://hack.rs/tuuuuuuube.jpg
+#!/bin/sh
+echo DOME.
