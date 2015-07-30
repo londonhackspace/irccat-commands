@@ -1,59 +1,47 @@
 #!/usr/bin/env python
 
 import requests
+from lxml import objectify, html
+from datetime import datetime
+import rfc822
 import re
-import sys
-from htmllaundry import strip_markup
 
-DEBUG=False
+def chunker(l, n):
+    for i in xrange(0, len(l), n):
+        yield l[i:i + n]
 
-if sys.argv[1:] == ['-d']:
-    DEBUG = True
+def parse_urldate(url):
+    matches = re.match(r'https?://dc4420.org/(\d{4}/\d{2}/\d{2})', url)
+    if not matches:
+        raise ValueError('Unexpected post URL')
+    return datetime.strptime(matches.group(1), '%Y/%m/%d')
 
-response = requests.get('http://dc4420.org')
+def parse_pubdate(pubdate):
+    ts = rfc822.mktime_tz(rfc822.parsedate_tz(pubdate))
+    return datetime.fromtimestamp(ts)
 
-matches = re.search('<blockquote>(.*?)</blockquote>', response.content, re.DOTALL | re.IGNORECASE)
+resp = requests.get('http://dc4420.org/feed.xml')
+rss = objectify.fromstring(resp.content)
+items = list(rss.channel.item)
 
-SEARCHING = 0
-FOUND_SPEAKER = 1
-FOUND_TITLE = 2
+talks = [i for i in items if 'talk' in list(i.category)]
+pubdates = [parse_pubdate(t.pubDate.text) for t in talks]
+urldates = [parse_urldate(t.link.text) for t in talks]
 
-states = ['SEARCHING', 'FOUND_SPEAKER', 'FOUND_TITLE']
+now = datetime.utcnow()
+#now = datetime(2015, 7, 1)
+future_talks = [t for d, t in sorted(zip(urldates, talks)) if d >= now]
+if not future_talks:
+    print "No talks yet. Email talks@dc4420.org if you'd like to give one."
 
-state = SEARCHING
-speaker = None
-title = None
+else:
+    first = future_talks[0]
+    print "Talk summary (more details at https://dc4420.org/):"
 
-print "Talk summary for the next DC4420: (Full synopses available at http://dc4420.org)"
-
-for line in matches.group(1).splitlines():
-    line = line.strip()
-    if not line:
-        continue
-    if DEBUG:
-        print states[state], line
-
-    if state == FOUND_SPEAKER:
-        speaker = line.strip()
-        state = SEARCHING
-        continue
-
-    if 'Speaker' in line or 'speaker' in line:
-        state = FOUND_SPEAKER
-        continue
-
-    if state == FOUND_TITLE:
-        title = line.strip()
-        state = SEARCHING
-        continue
-
-    if 'Title' in line or 'Talk Subject' in line:
-        state = FOUND_TITLE
-        continue
-
-    if speaker and title:
-        print ' * ', strip_markup(speaker), ': ', strip_markup(title)
-
-        speaker = None
-        title = None
+    desc = html.fragment_fromstring(first.description.text, create_parent='div')
+    sel = desc.cssselect('h2, h2+h3+p')
+    for title, speaker in chunker(sel, 2):
+        speaker, _, _ = speaker.text_content().partition(',')
+        title = title.text_content()
+        print ' * %s: %s' % (speaker, title)
 
