@@ -6,7 +6,7 @@ foods = sys.argv[5:]
 random.seed()
 
 PLACES = {
-  ('Bumsmiths', '31 Coate St'):
+  ('Bunsmiths', '31 Coate St'):
     ['burgers', 'burger', 'pulled pork', 'slaw', 'coleslaw'],
   ('Hurwundeki', '298-299 Cambridge Heath Road'):
     ['korean', 'bibimbap', 'kimchi', 'noodle', 'noodles', 'udon', 'pancake', 'pancakes',
@@ -29,6 +29,8 @@ PLACES = {
     ['wine', 'cake', 'caek', 'jelly', 'beans', 'horsemeat', 'horses', 'horse'],
   ('Ridley Road Market', 'Dalston'):
     ['bushmeat', 'buffalo', 'kangaroo', 'pygmy', 'crocodile'],
+  ('Franco Manca', 'Broadway Market'):
+    ['pizza', 'pizza', 'sourdough'],
   ('nowhere near Hackney Road', "I'm afraid"):
     ['jellied', 'eels', 'elephant', 'cat', 'dog', 'rat', 'rats', 'cockroaches', 'cockroach'],
 }
