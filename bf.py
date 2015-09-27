@@ -3,6 +3,7 @@ import nextevent
 
 dates = [
   (2011,  8,  2),
+  (2013,  8,  13),
 ]
 
 start, end = nextevent.get(dates, '17:00')
