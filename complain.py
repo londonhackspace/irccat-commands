@@ -7,7 +7,6 @@ import inflect
 
 complaints = [
   u'%s plural_verb(is) Too Damn High',
-  u'Only occupikeys like %s',
   u'%s plural_verb(causes) cancer',
   u'%s plural_verb(takes) up too much space',
   u'%s plural_verb(takes) up too much air',
@@ -23,7 +22,7 @@ complaints = [
   u'Everyone just trolls about %s',
   u'%s plural_verb(is) a technical solution to a social problem',
   u'The silent majority hates %s',
-  u'%s was banned by the fun police',
+  u'%s plural_verb(was) banned by the fun police',
   u'%s should only be available to gold members',
   u'%s only plural_verb(benefits) the elite',
   u'%s plural_verb(was) created by the cabal',
@@ -45,6 +44,9 @@ complaints = [
   u'%s plural_verb(is) not a permitted activity',
   u'%s plural_verb(requires) an official trustee-backed request',
   u'%s plural_verb(isn\'t) in the interest of the Hackspace\'s shareholders',
+  u'How the hell plural_verb(was) %s allowed past the moderators?',
+  u'%s should just get in the fucking sea',
+  u'%s plural_verb(needs) people to show some respect instead of just abusing us',
 ]
 
 thing = ' '.join(sys.argv[5:]).decode('utf-8')
