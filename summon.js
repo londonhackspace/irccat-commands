@@ -34,7 +34,7 @@ function searched() {
     }
 
     onload(shortened);
-    page.open('http://tinyurl.com/api-create.php?url=' + imgurl[1]);
+    page.open('http://tinyurl.com/api-create.php?url=' + unescape(imgurl[1]));
 }
 
 function shortened() {

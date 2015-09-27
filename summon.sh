@@ -1,3 +1,4 @@
 #!/bin/bash
+cd `dirname $0`
 shift; shift; shift; shift
-DISPLAY=:0 phantomjs /usr/share/irccat/summon.js $*
+/usr/local/bin/phantomjs summon.js $*
