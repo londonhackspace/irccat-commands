@@ -17,6 +17,7 @@ response = requests.get('http://www.aldertons.com/english-.htm')
 # http://abceda.com/cockney.html
 # http://www.freelang.net/dictionary/docs/html_cockney_english.php
 # http://www.freelang.net/dictionary/docs/html_english_cockney.php
+# add http://www.cockneyrhymingslang.co.uk/english/A ?
 
 content = response.content.decode('cp1252')
 root = lxml.html.document_fromstring(content)
