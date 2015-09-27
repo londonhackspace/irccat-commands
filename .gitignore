@@ -9,12 +9,20 @@ babel.conf
 
 # .equipment.sh:
 .3in1.txt
+.clubmate.txt
 .dishwasher.txt
+.donkey.txt
+.etchtank.txt
 .kegerator
 .knitter.txt
 .layzor.txt
+.lift.txt
 .makerbot.txt
+.minilathe.txt
 .mop.txt
 .printer.txt
+.robotarm.txt
 .stratasys.txt
+.trailermast.txt
+.vendingmachine.txt
 *~
