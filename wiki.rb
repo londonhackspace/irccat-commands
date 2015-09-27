@@ -10,12 +10,12 @@ if (!ARGV[4].to_s.empty?)
     (4..(ARGV.length - 1)).each { |index|
         page += "#{ARGV[index].to_s} "
     }
-    page.gsub!(/ /, "_").gsub!(/_$/, "")
+    page.gsub!(/ /, "+").gsub!(/\+$/, "")
 end
 
 curl = Curl::Easy.new
 curl.follow_location = true
-curl.url = "http://wiki.hackspace.org.uk/w/index.php?search=#{page}"
+curl.url = "http://wiki.london.hackspace.org.uk/w/index.php?search=#{page}"
 curl.http_head
 
 puts curl.last_effective_url
