@@ -56,11 +56,7 @@ else:
     f = open("/tmp/ragelevel",'w')
     f.write(str(levelIndex))
     f.close()
-    #send a message to the board
-    bits = dict({'peaceful': "000\r\n",'low': "100\r\n",'elevated': "010\r\n",'critical': "001\r\n"}).get(level, '111')
-    sock = socket(AF_INET, SOCK_DGRAM)
-    sock.sendto(bits, ('127.0.0.1', 9009))
-    
+   
     print "Setting Rage Level to", levelText[levelIndex]
 
 
