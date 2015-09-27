@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file=/usr/share/irccat/.3in1.txt
+file=/opt/irccat/irccat-data/3in1.txt
 equipment=3in1
 editor=$1
 
