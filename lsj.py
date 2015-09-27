@@ -2,6 +2,7 @@
 
 from urllib import urlencode
 import urllib2
+from lxml.html import document_fromstring
 from lxml import etree
 from lxml.cssselect import CSSSelector
 import sys
@@ -12,7 +13,7 @@ def browse(url, params=None):
   if params is not None:
     params = urlencode(params)
   page = urllib2.urlopen(BASE_URL + url, params)
-  return etree.HTML(page.read())
+  return document_fromstring(page.read())
 
 # etree doesn't see the Content-type header
 def get_text(el, real_encoding='utf-8'):
