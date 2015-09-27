@@ -14,9 +14,9 @@
         print 'Estoy cargando mi laser? What you say?';
 
     } else {
-        print "{$from}	->	" . date('r', $unixTime);
-        
-        if (!is_numeric($from)) {
-            print " ({$unixTime})";
+        if (is_numeric($from)) {
+            print date('r', $unixTime);
+        } else {
+            print date('r', $unixTime) . " ({$unixTime})";
         }
     }
