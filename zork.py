@@ -44,5 +44,4 @@ if len(sys.argv) > 5:
 
         time.sleep(1)
         response = get_response(input_path)
-        print sanitize('\n'.join(response)).rstrip()
-
+        print sanitize(' '.join(response)).rstrip()
