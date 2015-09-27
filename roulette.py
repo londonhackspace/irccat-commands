@@ -1,35 +1,55 @@
 #!/usr/bin/env python
 
+import collections
 import pickle
 import random
 
-file = open("/usr/share/irccat/pickle.pck", "r") # read mode
-chamber = pickle.load(file)
+class Gun:
+    def __init__(self, chamber_size=6):
+        self._chamber_size = chamber_size
+        self._chamber = collections.deque([0] * self._chamber_size)
+        
+    def load(self, index=1):
+        self._chamber[index] = 1
 
-#chamber = [1,0,0,0,0,0]
-#print chamber
+    def spin_chamber(self, spin=None):
+        if not spin:
+            spin = random.randint(0, self._chamber_size - 1)
+        self._chamber.rotate(spin)
 
-for i in 0,1,2,3,4,5:
-    #print i
-    if(chamber[i]==0):
-        print '*CLICK*'
-        chamber[i] = 2
-        break
-    elif(chamber[i]==1):
-        print 'BANG! You are dead!'
-        chosen = random.randint(0,5)
-        print 'I will load a bullet in chamber %d and spin the barrel' % (chosen)
-        spin = random.randint(0,30)
-        chosen = chosen + (spin - (6 * (spin // 6)))
-        if (chosen>5):
-            chosen = chosen - 6
-        for i in (0,1,2,3,4,5):
-            if(i==chosen):
-                chamber[i] = 1
-            else:
-                chamber[i] = 0 
-        break
+    def pull_trigger(self):
+        if self._chamber[0] == 0:
+            print '*CLICK*'
+            self.spin_chamber(1)
+        else:
+            print "*BANG* You're dead!"
+            
+            print "Reloading and spinning the chamber"
+            self.spin_chamber()
 
-file = open("/usr/share/irccat/pickle.pck", "w") # write mode
-pickle.dump(chamber, file)
-file.close()
+
+def load(path):
+    try:
+        with open(path, "r") as f:
+            return pickle.load(f)
+    except:
+        return None
+
+def save(path, data):
+    with open(path, "w") as f:
+        pickle.dump(data, f)
+
+
+
+path = "/usr/share/irccat/roulette_pickle.pck"
+
+gun = load(path)
+if not gun:
+    gun = Gun()
+    gun.load()
+    gun.spin_chamber()
+    print 'Loading the gun and spinning the chamber'
+
+gun.pull_trigger()
+
+save(path, gun)
