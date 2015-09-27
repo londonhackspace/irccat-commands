@@ -25,6 +25,9 @@ for component in cal.walk():
             timestr = []
             datestr = 'TODAY!'
 
+            if offset.days == 0 and datetime.now().day != start.day:
+                datestr = 'TOMORROW!'
+
             if offset.days > 0:
                 daystr = '%s day' % offset.days
                 
