@@ -27,6 +27,7 @@ for (tool_id, tool_name), synonyms in tools.items():
         break
 
 else:
+    print 'Specify which tool, or see: https://london.hackspace.org.uk/members/tools.php'
     sys.exit(1)
 
 response = requests.get('http://acserver:1234/%s/status' % tool_id)
@@ -35,10 +36,10 @@ if status == '1':
     response2 = requests.get('http://acserver:1234/%s/is_tool_in_use' % tool_id)
     inuse = response2.content
     if inuse == 'yes':
-        print '%s in service and currently in use' % tool_name
+        print '%s in service and currently in use' % tool_name + ', also see http://hack.rs/tools'
     elif inuse == 'no':
-        print '%s in service, but not currently in use' % tool_name
+        print '%s in service, but not currently in use' % tool_name + ', also see http://hack.rs/tools'
 
 elif status == '0':
-    print '%s out of service' % tool_name
+    print '%s out of service, also see http://hack.rs/tools' % tool_name
 
