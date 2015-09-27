@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ssh -T -i /home/irccat/.ssh/zen zenstats@boole.lan.london.hackspace.org.uk
+ssh -T -i /home/irccat/.ssh/zen zenstats@denning.lan.london.hackspace.org.uk
