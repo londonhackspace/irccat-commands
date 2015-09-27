@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file=/usr/share/irccat/.stratasys.txt
+file=/opt/irccat/irccat-data/stratasys.txt
 equipment=Stratasys
 editor=$1
 
