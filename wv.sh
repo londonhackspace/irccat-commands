@@ -1,7 +1,3 @@
-#!/bin/bash
-NAME=$5
-if [ "$NAME" == '' ]; then
-    NAME=$1;
-fi
-
-echo "Hey $NAME, http://hack.rs/wv.jpg"
+#!/bin/sh
+echo "In response to a complaint we received under the IRC Fun police Act, we have removed this command. A fun-police van has been dispatched"
+touch /usr/share/irccat/funflag
