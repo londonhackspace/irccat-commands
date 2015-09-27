@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import json, urllib2
 
-docks = [539, 96]
+docks = [512, 446, 534, 539]
 results = []
 
 for dock in docks:
