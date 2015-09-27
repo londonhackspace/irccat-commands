@@ -26,17 +26,17 @@ items = list(rss.channel.item)
 
 talks = [i for i in items if 'talk' in list(i.category)]
 pubdates = [parse_pubdate(t.pubDate.text) for t in talks]
-urldates = [parse_urldate(t.link.text) for t in talks]
+startdates = [parse_pubdate(t.eventStart.text) for t in talks]
 
 now = datetime.utcnow()
 #now = datetime(2015, 7, 1)
-future_talks = [t for d, t in sorted(zip(urldates, talks)) if d >= now]
+future_talks = [t for d, t in sorted(zip(startdates, talks)) if d >= now]
 if not future_talks:
     print "No talks yet. Email talks@dc4420.org if you'd like to give one."
 
 else:
     first = future_talks[0]
-    print "Talk summary (more details at https://dc4420.org/):"
+    print "Talk summary for %s (more details at https://dc4420.org/):" % startdates[0].strftime("%a %d %B %Y")
 
     desc = html.fragment_fromstring(first.description.text, create_parent='div')
     sel = desc.cssselect('h2, h2+h3+p')
