@@ -13,7 +13,7 @@ import time
 levelText = ['peaceful', 'low', 'elevated', 'critical']
 
 if sys.argv[3].startswith('#'):
-    print 'Please use /msg for ragelevel'
+    print 'Please use /msg for ragelevel or use ?noisebridgelevel'
     sys.exit(1)
 
 if(len(sys.argv) <= 5):
