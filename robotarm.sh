@@ -1,10 +1,11 @@
 #!/bin/bash
 
-file=/usr/share/irccat/.robotarm.txt
+
 equipment=robotarm
+file=/opt/irccat/irccat-data/robotarm.txt
 editor=$1
 
 shift; shift; shift; shift
 
-/usr/share/irccat/.equipment.sh $file $equipment $editor $*
+/opt/irccat/irccat-commands/.equipment.sh $file $equipment $editor $*
 
