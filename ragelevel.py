@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys
 import os
-import urllib, urllib2
+from socket import *
 import time
 
 #print 'Ragelevel is disabled for 4.2 minutes'
@@ -57,8 +57,9 @@ else:
     f.write(str(levelIndex))
     f.close()
     #send a message to the board
-    message = urllib.quote("$rage" + str(levelIndex))
-    urllib2.urlopen("http://127.0.0.1:8020/%s" % message)
+    bits = dict({'peaceful': "000\r\n",'low': "100\r\n",'elevated': "010\r\n",'critical': "001\r\n"}).get(level, '111')
+    sock = socket(AF_INET, SOCK_DGRAM)
+    sock.sendto(bits, ('127.0.0.1', 9009))
     
     print "Setting Rage Level to", levelText[levelIndex]
 
