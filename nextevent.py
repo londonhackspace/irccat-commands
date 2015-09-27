@@ -7,7 +7,7 @@ class EventInProgress(Exception):
 
 def get(nextdate, starttime='19:00', endtime='23:00'):
   '''
-  If nextdate is a list, it's assumed to be a list of date tuples.
+  If nextdate is a list, it's assumed to be a list of date/datetime tuples.
   
   If it's a function, it should return the next meeting on or after the
   date passed in.
@@ -16,49 +16,46 @@ def get(nextdate, starttime='19:00', endtime='23:00'):
   In the former case, starttime/endtime can be strings or datetime.times.
   In the latter case, they will be ignored.
   '''
-
-  if isinstance(nextdate, list):
-
-    dates = nextdate
-
-    def fromlist(d):
-      d = d.year, d.month, d.day
-      future = [f for f in dates if f >= d]
-      if not future:
-        return None
-      return date(*min(future))
-
-    nextdate = fromlist
-
-  now = datetime.now()
-
   if not isinstance(starttime, time):
     starttime = datetime.strptime(starttime, '%H:%M').time()
   if not isinstance(endtime, time):
     endtime = datetime.strptime(endtime, '%H:%M').time()
 
-  d = nextdate(now.date())
+  if isinstance(nextdate, list):
+    # provide a basic implementation that will return the next
+    # from a sorted list of start date/datetime tuples
+    dates = []
+    
+    for d in nextdate:
+      if len(d) == 3:
+        d += (starttime.hour, starttime.minute, starttime.second)
+      dates.append(d)
+
+    def _nextdate(d):
+      d = d.year, d.month, d.day, d.hour, d.minute, d.second
+      future = [f for f in dates if f > d]
+      # FIXME: take endtime into account
+      if not future:
+        return None
+      start = datetime(*min(future))
+      end = datetime.combine(start, endtime)
+      return start, end
+
+    nextdate = _nextdate
+
+  now = datetime.now()
+  d = nextdate(now)
   if not d:
     return None
-  elif not isinstance(d, tuple):
-    start, end = datetime.combine(d, starttime), datetime.combine(d, endtime)
-  else:
+  elif isinstance(d, tuple):
     start, end = d
+  else:
+    start, end = datetime.combine(d, starttime), datetime.combine(d, endtime)
 
   if start > now:
     return start, end
   elif end > now:
     raise EventInProgress
-
-  d = nextdate(start.date() + timedelta(days=1))
-  if not d:
-    return None
-  elif not isinstance(d, tuple):
-    start, end = datetime.combine(d, starttime), datetime.combine(d, endtime)
-  else:
-    start, end = d
-
-  return start, end
 
 def date_suffix(day):
   if 4 <= day <= 20 or 24 <= day <= 30:
@@ -67,7 +64,12 @@ def date_suffix(day):
     return '%d%s' % (day, ['st', 'nd', 'rd'][day % 10 - 1])
 
 def date_nice(dt):
-  return dt.strftime('%A %%s %B') % date_suffix(dt.day)
+  date = dt.strftime('%A %%s %B') % date_suffix(dt.day)
+
+  if dt.year != datetime.now().date().year:
+    date += ' %s' % dt.year
+
+  return date
 
 def pluralise(fmt, n):
   return fmt % (n, int(n) != 1 and 's' or '')
