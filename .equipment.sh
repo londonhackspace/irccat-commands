@@ -1,9 +1,12 @@
 #!/bin/bash
 
-file=$1
+basedir=/opt/irccat/irccat-data
 equipment=$2
 editor=$3
+file="$basedir/$equipment.status"
 shift; shift; shift
+
+
 
 if [ "$1" == '' ]; then
   if [ "`tail -1 $file`" != 'working' ]; then
