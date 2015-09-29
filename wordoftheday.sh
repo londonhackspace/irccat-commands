@@ -1,10 +1,12 @@
 #!/bin/sh
 
-if [ $5 = "set" ];
+shift; shift; shift; shift
+
+if [ "$1" != '' ];
 then
-        echo "setting word to $6"
-        echo $6 > /usr/share/irccat/wordday.txt
+        echo "setting word to $1"
+        echo $1 > /usr/share/irccat/.wordoftheday.txt
 else
-    word=`cat /usr/share/irccat/wordday.txt`
+    word=`cat /usr/share/irccat/.wordoftheday.txt`
     echo "Todays word is: $word"
 fi
