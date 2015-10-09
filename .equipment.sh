@@ -1,19 +1,18 @@
 #!/bin/bash
 
 basedir=/opt/irccat/irccat-data
-equipment=$2
-editor=$3
+equipment=$1
+editor=$2
 file="$basedir/$equipment.status"
-shift; shift; shift
-
+shift; shift; shift; shift; shift
 
 
 if [ "$1" == '' ]; then
-  if [ "`tail -1 $file`" != 'working' ]; then
-    echo "$equipment status: `tail -1 $file` (`tail -2 $file | head -1 | sed -e 's/  / /g' -e 's/Changed at //g'`)"
+  if [ "`tail -1 "$file"`" != 'working' ]; then
+    echo "$equipment status: `tail -1 "$file"` (`tail -2 "$file" | head -1 | sed -e 's/  / /g' -e 's/Changed at //g'`)"
   else
     now=`date +%s`
-    borked=`stat -c %Y $file`
+    borked=`stat -c %Y "$file"`
     # Round up
     diff=`expr \( $now - $borked + 86399 \) / 60 / 60 / 24`
   
@@ -27,6 +26,6 @@ if [ "$1" == '' ]; then
 else
   # yeah I know this accumulates indefinitely. I think a little history 
   # is a good idea. When it gets too much, someone can fix it.
-  echo "Changed at " $(date) " by " $editor >>$file
-  echo $*>>$file
+  echo "Changed at " $(date) " by " $editor >>"$file"
+  echo "$@">>"$file"
 fi
