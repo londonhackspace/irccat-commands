@@ -1,5 +1,8 @@
 #! /usr/bin/python
 
+print "This script is currently out of service."
+exit
+
 f = open("/home/solexious/coolbot/totalTime", "r")
 seconds = int(f.read())
 
