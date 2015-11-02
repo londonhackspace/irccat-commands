@@ -53,8 +53,8 @@ thing = ' '.join(sys.argv[5:]).decode('utf-8')
 
 def spurious_singular(word):
     word = word.lower()
-    if word.endswith('u') or word.endswith('nes') or word.endswith('ss'):
-        # cactus, virus, darkness, etc.
+    if word.endswith('u') or word.endswith('es'):
+        # cactus, virus, darkness, process, etc.
         return True
     if word in ['thi', 'stratasy']:
         return True
