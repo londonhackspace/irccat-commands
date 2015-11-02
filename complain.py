@@ -44,7 +44,7 @@ complaints = [
   u'%s plural_verb(is) not a permitted activity',
   u'%s plural_verb(requires) an official trustee-backed request',
   u'%s plural_verb(isn\'t) in the interest of the Hackspace\'s shareholders',
-  u'How the hell plural_verb(was) %s allowed past the moderators?',
+  u'How plural_verb(was) %s allowed past the moderators?',
   u'%s should just get in the fucking sea',
   u'%s plural_verb(needs) people to show some respect instead of just abusing us',
 ]
@@ -53,7 +53,7 @@ thing = ' '.join(sys.argv[5:]).decode('utf-8')
 
 def spurious_singular(word):
     word = word.lower()
-    if word.endswith('u') or word.endswith('nes'):
+    if word.endswith('u') or word.endswith('nes') or word.endswith('ss'):
         # cactus, virus, darkness, etc.
         return True
     if word in ['thi', 'stratasy']:
