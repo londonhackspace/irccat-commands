@@ -21,7 +21,7 @@ def untilmsg(until):
         return '%s day%s, %s hour%s' % (days, d_s, hours, h_s)
 
 
-PICKLEFILE = '/usr/share/irccat/.lastseen.pickle'
+PICKLEFILE = '/opt/irccat/irccat-data/lastseen.pickle'
 
 name = ' '.join(sys.argv[5:])
 
