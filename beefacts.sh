@@ -1,3 +1,3 @@
 #!/bin/bash
-#shuf -n 1 /usr/share/irccat/beefacts.txt
-shuf -n 1 /usr/share/irccat/fakebeefacts.txt
+#shuf -n 1 /opt/irccat/irccat-commands/beefacts.txt
+shuf -n 1 /opt/irccat/irccat-commands/fakebeefacts.txt
