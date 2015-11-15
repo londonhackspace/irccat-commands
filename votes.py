@@ -3,12 +3,12 @@ import requests
 import nextevent
 import datetime
 
-response = requests.get('http://www.opavote.org/api/elections/4877610177789952?p=n_votes')
+response = requests.get('http://www.opavote.com/api/elections/6555796884160512/n-votes')
 votes = int(response.content)
 
-total = 1119
+total = 1251
 
-voting_ends = datetime.datetime(2014, 12, 29, 21, 0)
+voting_ends = datetime.datetime(2015, 11, 29, 21, 0)
 if voting_ends > datetime.datetime.now():
     end = nextevent.untilmsg(voting_ends).lower()
 
