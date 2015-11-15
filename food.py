@@ -12,7 +12,9 @@ PLACES = {
     ['korean', 'bibimbap', 'kimchi', 'noodle', 'noodles', 'udon', 'pancake', 'pancakes',
      'dumpling', 'dumplings', 'bulgogi', 'haircut', 'haircuts'],
   ('Mother Kelly\'s', '251 Paradise Row'):
-    ['beer'] * 5 + ['cheese', 'ham'],
+    ['beer'] * 3 + ['cheese', 'ham'],
+  ('Redchurch Brewery', '275 Poyser St'):
+    ['beer'] * 2,
   ('Japanese Canteen', '255 Paradise Row'):
     ['sushi', 'noodle', 'noodles', 'ramen', 'donburi', 'fried chicken', 'chicken',
      'bibimbap', 'kimchi', 'sashimi'],
@@ -31,6 +33,8 @@ PLACES = {
     ['bushmeat', 'buffalo', 'kangaroo', 'pygmy', 'crocodile'],
   ('Franco Manca', 'Broadway Market'):
     ['pizza', 'pizza', 'sourdough'],
+  ('Hackney Coffee Co', '499 Hackney Road'):
+    ['coffee'] * 3,
   ('nowhere near Hackney Road', "I'm afraid"):
     ['jellied', 'eels', 'elephant', 'cat', 'dog', 'rat', 'rats', 'cockroaches', 'cockroach'],
 }
