@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/opt/irccat/irccat-commands/ps-venv/bin/python
 
 import sys
 from subprocess import Popen, PIPE
 from icalendar import Calendar
 from datetime import datetime
 
-stdout, stderr = Popen(['php', '/usr/share/irccat/calendar.php'], stdout=PIPE, stderr=PIPE).communicate()
+stdout, stderr = Popen(['php', '/opt/irccat/irccat-commands/calendar.php'], stdout=PIPE, stderr=PIPE).communicate()
 
 cal = Calendar.from_ical(stdout)
 

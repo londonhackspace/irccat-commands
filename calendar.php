@@ -47,7 +47,7 @@ DTSTART:19701025T020000
 RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
 END:STANDARD
 END:VTIMEZONE
-<?
+<?php
 
 // Strtotime is dumb when the number of days in the current month is
 // larger than the next, so drop back to the 28th to avoid this
@@ -75,13 +75,13 @@ SUMMARY:Pub Standards
 DTEND:<?=date('Ymd', $timestamp)?>T233000
 DESCRIPTION:Beer\, lots of beer.
 END:VEVENT
-<?
+<?php
 
 }
 
 ?>
 END:VCALENDAR
-<?
+<?php
 
 # iCal DEMANDS lines end in CRLF. The twat.
 $output = ob_get_contents();
