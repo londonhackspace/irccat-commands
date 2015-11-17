@@ -1,2 +1,2 @@
 #!/bin/bash
-echo 'http://wiki.hackspace.org.uk/wiki/Quotes#bottom'
+echo 'https://wiki.london.hackspace.org.uk/view/Quotes#bottom'
