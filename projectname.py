@@ -14,7 +14,7 @@ alignment = [
     'chaotic', 'dark', 'lawful', 'light', 'neutral'
 ]
 behaviours = [
-    'bold', 'brave', 'clumsy', 'forgetful', 'lame', 'rampant'
+    'bold', 'brave', 'clumsy', 'forgetful', 'lame', 'rampant', 'efficient'
 ]
 colours = [
     'black', 'blue', 'brown', 'green', 'indigo', 'jade', 'orange',
@@ -51,7 +51,7 @@ times = [
 ]
 adj_misc = [
     'closed', 'common', 'millennium', 'misty', 'naked', 'open', 'quantum', 'rare',
-    'secret', 'space', 'winding', 'windy', 'super', 'turbo'
+    'secret', 'space', 'winding', 'windy', 'super', 'turbo', 'germanic', 'teutonic'
 ]
 
 adjective_groups = [
@@ -71,7 +71,7 @@ animals = [
     'falcon', 'ferret', 'fox', 'gopher', 'hawk', 'hawkmoth', 'jay',
     'lizard', 'minnow', 'monkey', 'neko', 'otter', 'panda', 'parrot',
     'peacock', 'platypus', 'poodle', 'possum', 'rabbit', 'rhino', 'setter',
-    'shark', 'slug', 'tiger', 'unicorn', 'vixen'
+    'shark', 'slug', 'tiger', 'unicorn', 'vixen', 'salmon'
 ]
 architecture = [
     'arch', 'bank', 'ceiling', 'column', 'dome', 'door', 'doorway', 'elevator',
