@@ -5,32 +5,25 @@ import random
 import sys
 import pickle
 
-save_file = "/opt/irccat/irccat-data/noisebridgelevel.dat"
-min = 1000
-max = 5000
+save_file = "/opt/irccat/irccat-data/noisebridgelevel.pickle"
+random_min = 1000
+random_max = 5000
+halflife = 60 * 60 * 24 * 7
 
-def load(path):
-    try:
-        with open(path, "r") as f:
-            return pickle.load(f)
-    except:
-        return None
-
-def save(path, data):
-    with open(path, "w") as f:
-        pickle.dump(data, f)
-
-
-timestamp = load(save_file)
 now = datetime.datetime.now()
 
-save(save_file, now)
+try:
+    with open(save_file, "r") as f:
+        value, timestamp = pickle.load(f)
+except IOError:
+    value, timestamp = 0, now
 
-if not timestamp:
-    num = random.randint(min, max)
-else:
-    diff = (now - timestamp).total_seconds()
-    num = int(3600 * 100 / float(diff))
+diff = (now - timestamp).total_seconds()
 
-msg = 'The Hackspace is currently measuring {0} nanonoisebridges and rising.'.format(num)
+new_value = int(value * 0.5 ** (diff / halflife) + random.randint(random_min,random_max))
+
+with open(save_file, "w") as f:
+    pickle.dump((new_value, now), f)
+
+msg = 'The Hackspace is currently measuring {0} nanonoisebridges and rising.'.format(new_value)
 print(msg)
