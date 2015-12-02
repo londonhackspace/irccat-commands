@@ -1,0 +1,70 @@
+# It's call case insensitive
+# If someone appears more than once the last level takes priority
+# So levels should be in ascending order
+
+gold:
+ name: Gold
+ members:
+   - cab0lt
+   - tomwyatt
+   - oni
+   - aden
+   - detonate
+   - lorddet
+   - paddyd
+goldplus:
+  name: Gold Plus
+  members:
+   - cadmus
+platinum:
+  name: smiling poo emoji
+  members:
+   - booyaa
+megaplatinum:
+  name: Mega Phallic
+  members:
+   - kraptv
+radiant:
+  name: Radiant
+  members:
+   - solexious
+goldpaint:
+  name: Gold star for effort, but only standard
+  members:
+   - Paul2
+pony:
+  name: Pony
+  members:
+    - dilateddinosaur
+blackspec:
+  name: Black Special
+  members:
+   - flux42
+secret:
+  name: Secret level
+  members:
+   - wyan
+ballsack:
+  name: Tarnished Ballsack
+  members:
+   - LordDet
+jonty:
+  name: Jonty
+  members:
+   - jontyw
+angel:
+  name: Angelic
+  members:
+   - tgreer
+sparkly:
+  name: Sparkly
+  members:
+   - ms7821
+monorail:
+  name: MONORAIL
+  members:
+   - TimRTerrible
+classified:
+  name: Sorry, that's classified
+  members:
+   - artag
