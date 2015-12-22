@@ -9,6 +9,7 @@ dates = [
   (2015,  2, 17, 12,  0), # Eutelsat
   (2015,  3,  2,  3, 50),
   (2015,  6, 28, 15, 21),
+  (2015, 12, 22,  1, 29), # ORBCOMM-2
 ]
 
 start, end = nextevent.get(dates)
