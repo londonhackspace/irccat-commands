@@ -45,5 +45,3 @@ if root.xpath("/queryresult")[0].attrib['success'] == 'true':
 
     response = "%s: %s = %s" % (user, question, answer)
     print response.encode('utf8')
-else:
-    print "%s: Sorry, I don't understand the question" % user
