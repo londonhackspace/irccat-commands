@@ -6,7 +6,6 @@ import time
 
 search = ' '.join(sys.argv[5:]).strip()
 if not search:
-    print("derp")
     sys.exit(1)
 
 url = "https://wiki.london.hackspace.org.uk/view/Grievance_Procedure/Bans_Issued"
