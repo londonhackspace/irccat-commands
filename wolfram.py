@@ -31,19 +31,11 @@ response = requests.get('http://api.wolframalpha.com/v2/query?appid=%s&input=%s&
 root = etree.fromstring(response.content)
 
 if root.xpath("/queryresult")[0].attrib['success'] == 'true':
-    if False: # overspecific and often wrong
-        possible_questions = ('Input interpretation', 'Input')
-        question = find_node(root, possible_questions)
-
-        possible_answers = ('Current result', 'Response', 'Result', 'Results', 'IP address registrant', 'Definitions')
-        answer = find_node(root, possible_answers)
-    else:
-        question = find_id_node(root)
-        answer = find_non_id_node(root)
+    question = find_id_node(root)
+    answer = find_non_id_node(root)
 
     answer = answer.replace('\n', ', ')
 
     response = "%s: %s = %s" % (user, question, answer)
+    response = response.replace(u'\uf74d', u'\u212f')
     print response.encode('utf8')
-else:
-    print "%s: Sorry, I don't understand the question" % user

@@ -2,9 +2,10 @@
 from lxml import html
 import requests
 import sys
-import re
 
-search = sys.argv[1]
+search = ' '.join(sys.argv[5:]).strip()
+if not search:
+  sys.exit(1)
 
 url = "https://wiki.london.hackspace.org.uk/view/Grievance_Procedure/Bans_Issued"
 
@@ -28,7 +29,7 @@ for item in entries:
     else:
         count += 1
 
-name = [key for key, value in bans.items() if re.search(search, key, re.I)]
+name = [key for key, value in bans.items() if search.lower() in key.lower()]
 
 if name:
     name = name[0]
