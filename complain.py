@@ -47,6 +47,7 @@ complaints = [
   u'How plural_verb(was) %s allowed past the moderators?',
   u'%s should just get in the fucking sea',
   u'%s plural_verb(needs) people to show some respect instead of just abusing us',
+  u'%s plural_verb(is) a pile of dick',
 ]
 
 thing = ' '.join(sys.argv[5:]).decode('utf-8')
