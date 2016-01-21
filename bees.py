@@ -17,6 +17,7 @@ responses = [
 "What did the sushi say to the bee? WASABI!",
 "http://41.media.tumblr.com/5dbbbe451d75801371d7eff73b8ebcb9/tumblr_nnue63MdUa1usi9s5o1_1280.png",
 "http://www.norphil.co.uk/2015/08-Bees_of_Britain_stamps.htm",
+"http://files.explosm.net/comics/Dave/phoneswithbeesinthem.png",
 ]
 
 print random.choice(responses)
