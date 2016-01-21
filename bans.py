@@ -2,7 +2,6 @@
 from lxml import html
 import requests
 import sys
-import re
 
 search = ' '.join(sys.argv[5:]).strip()
 if not search:
@@ -30,7 +29,7 @@ for item in entries:
     else:
         count += 1
 
-name = [key for key, value in bans.items() if re.search(re.escape(search), key, re.I)]
+name = [key for key, value in bans.items() if search.lower() in key.lower()]
 
 if name:
     name = name[0]
