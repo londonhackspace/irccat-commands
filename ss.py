@@ -12,6 +12,7 @@ dates = {
   (2014,  7, 31): ('Parklife', 'Regents Park', 'NW1 4NR'),
   (2015,  2, 26): ('How Do I Even', 'Cask Pub & Kitchen', 'SW1V 2EE'),
   (2015, 12, 15): ('Decimalisation', 'UNKNOWN', 'London'),
+  (2016,  4,  1): ('Corked', 'The Winemakers Club', 'EC4A 4AN'),
 }
 
 def next_meet(fromd):
