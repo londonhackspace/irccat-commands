@@ -74,5 +74,29 @@ dates = [
   (2016, 11, 29),
 ]
 
-start, end = nextevent.get(dates, '19:30')
-nextevent.printmsg('Next monthly meeting', 'beer', start)
+if __name__ == '__main__':
+
+    from dctalks import get_future_events, talk_getter
+    from nextevent import date_nice, untilmsg
+
+    start, end = nextevent.get(dates, '19:30')
+    events = get_future_events()
+
+    msg = "No talks yet! Email talks@dc4420.org if you'd like to give one."
+    msg = "No talks yet!"
+    if events:
+        start, event = events[0]
+        talks = list(talk_getter(event))
+        if len(talks) == 1:
+            msg = "One talk so far. Email talks@dc4420.org if you'd like to give the other."
+            msg = "One talk so far!"
+
+        elif len(talks) > 1:
+            msg = "Type ?dctalks for a list of talks."
+
+    print 'Next monthly meeting: %s (%s until beer!). %s' % (
+      date_nice(start),
+      untilmsg(start),
+      msg,
+    )
+
