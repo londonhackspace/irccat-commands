@@ -86,7 +86,7 @@ if __name__ == '__main__':
     msg = "No talks yet!"
     matching_events = [(s, e) for s, e in events if s.date() == start.date()]
     if matching_events:
-        start, event = matching_events[0]
+        event_start, event = matching_events[0]
         talks = list(talk_getter(event))
         if len(talks) == 1:
             msg = "One talk so far. Email talks@dc4420.org if you'd like to give the other."
