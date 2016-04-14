@@ -38,7 +38,7 @@ if status == '1':
     if inuse == 'yes':
         print '%s in service and currently in use' % tool_name + ', also see http://hack.rs/tools'
     elif inuse == 'no':
-        print '%s in service, but not currently in use' % tool_name + ', also see http://hack.rs/tools'
+        print '%s in service, and not currently in use' % tool_name + ', also see http://hack.rs/tools'
 
 elif status == '0':
     print '%s out of service, also see http://hack.rs/tools' % tool_name
