@@ -57,5 +57,6 @@ if __name__ == '__main__':
         start, event = events[0]
         print "Talk summary for %s (more details at https://dc4420.org/):" % start.strftime("%a %d %B %Y")
         for speaker, title in talk_getter(event):
-            print ' * %s: %s' % (speaker.replace('\n', ' '), title.replace('\n', ' '))
+            msg = ' * %s: %s' % (speaker.replace('\n', ' '), title.replace('\n', ' '))
+            print msg.encode('utf-8')
 
