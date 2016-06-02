@@ -12,7 +12,7 @@ def readwordlist(filename):
     wordlist = word_re.findall(data)
     m = re.match(r'^' + word_pattern, data)
     if m:
-        wordlist.add(m.group(1))
+        wordlist.insert(0, m.group(1))
     return wordlist
 
 if __name__ == '__main__':
