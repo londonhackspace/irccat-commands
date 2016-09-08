@@ -54,6 +54,9 @@ thing = ' '.join(sys.argv[5:]).decode('utf-8')
 
 def spurious_singular(word):
     word = word.lower()
+    if ' on ' in word:
+        # a on b (which is not a mass term)
+        return True
     if word.endswith('u') or word.endswith('es'):
         # cactus, virus, darkness, process, etc.
         return True
@@ -87,7 +90,7 @@ if thing:
       pass
 
   complaint = random.choice(complaints)
-  if thing.lower() == thing:
+  if thing[0].lower() == thing[0]:
     if complaint.startswith('%s'):
       thing = thing[0].upper() + thing[1:]
 
