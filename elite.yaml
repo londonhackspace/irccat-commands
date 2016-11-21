@@ -16,6 +16,7 @@ goldplus:
   name: Gold Plus
   members:
    - cadmus
+   - cab0lt
 sockpuppet:
   name: Sock Puppet
   members:
@@ -69,6 +70,6 @@ monorail:
   members:
    - TimRTerrible
 classified:
-  name: Sorry, that's classified
+  name: Sorry that's classified 
   members:
    - artag
