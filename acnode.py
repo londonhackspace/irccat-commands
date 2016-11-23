@@ -7,8 +7,8 @@ tools = {
         ['3in1', '3-in-1', '3 in 1', 'three in one', 'three-in-one'],
     (2, 'Old laser cutter'):
         ['oldlasercutter', 'old lasercutter'],
-    (3, 'Lulzbot'):
-        ['lulz', 'lulz bot'],
+    (3, 'Lulzbot 1 (hull)'):
+        ['lulz', 'lulz bot', 'hull'],
     (4, 'Biohacking Lab'):
         ['biohackers', 'biolab'],
     (5, 'Laser cutter'):
@@ -17,8 +17,12 @@ tools = {
         ['tig'],
     (7, 'Shapeoko'):
         ['shapeoko2', 'shapeoko 2'],
-    (8, 'CNC'):
-        [],
+    (10, 'Myford lathe'):
+        ['myford'],
+    (11, 'Green milling machine'):
+        ['green'],
+    (16, 'Lulzbot 2 (crump)'):
+        ['lulz2', 'crump']
 }
 
 tool = ' '.join(sys.argv[5:])
