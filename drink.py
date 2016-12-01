@@ -16,6 +16,6 @@ def readwordlist(filename):
     return wordlist
 
 if __name__ == '__main__':
-    wordlist = readwordlist('/usr/share/dict/british-english-insane')
+    wordlist = readwordlist('/usr/share/dict/british-english-insane') + ['drrk']
     print random.choice(wordlist).decode('utf-8').upper().encode('utf-8')
 
