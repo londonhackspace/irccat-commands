@@ -13,7 +13,7 @@ import time, datetime, urllib2, json
 
 # solexious: russ posted on the ml about the new cutter being open for use on the 24/12/2014
 
-start = datetime.datetime(2014, 12, 24)
+start = datetime.datetime(2016, 12, 4)
 start = int(time.mktime(start.timetuple()))
 
 #solexious: 399h:56m:57s of lasing have occurred. was on the 18th of august
@@ -27,5 +27,5 @@ url = "http://acserver.london.hackspace.org.uk/api/get_tool_runtime_since/5/" + 
 ret = urllib2.urlopen(url).read()
 ret = json.loads(ret)[0]
 
-print "using acserver data + possibly wrong coolbot time: " + ret['verbose']
+print "Laser tube hours: " + ret['verbose']
 
