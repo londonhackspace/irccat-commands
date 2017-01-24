@@ -18,20 +18,17 @@ entries = result.xpath("//tr/td//text()")
 bans = {}
 count = 1
 for item in entries:
-    if count == 1:
+    if count == 1 and item.strip() not in bans:  # Ignore any subsequent (old) bans
         currentKey = item.strip()
         bans[currentKey] = []
-
     else:
         bans[currentKey].append(item.strip())
-
     if count == len(headings):
         count = 1
     else:
         count += 1
 
 name = [key for key, value in bans.items() if search.lower() in key.lower()]
-
 if name:
     name = name[0]
     now = time.time()
