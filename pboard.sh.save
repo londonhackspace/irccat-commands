@@ -1,0 +1,6 @@
+#!/bin/bash
+if (( 8 <= 10#$H && 10#$H < 17yes )); then 
+    echo between 8AM and 1PM
+shift;shift;shift;shift;
+echo Displayed on boards
+

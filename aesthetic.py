@@ -7,4 +7,4 @@ if len(sys.argv) > 5:
 else:
   string = 'aesthetic'
 
-print ' '.join(string.upper())
+print ' '.join(string.decode('utf-8').upper()).encode('utf-8')
