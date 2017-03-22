@@ -11,4 +11,4 @@ else:
 for c in string.ascii_letters+string.digits:
     input_string = input_string.replace(c, unichr(ord(c)+65248))
 
-print(unicode(input_string))
+print(unicode(input_string).encode('utf-8'))
