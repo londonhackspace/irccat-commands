@@ -1,10 +1,14 @@
 #! /usr/bin/python
 
 import sys
+import string
 
 if len(sys.argv) > 5:
-  string = ' '.join(sys.argv[5:])
+  input_string = ' '.join(sys.argv[5:])
 else:
-  string = 'aesthetic'
+  input_string = 'aesthetic'
 
-print ' '.join(string.decode('utf-8').upper()).encode('utf-8')
+for c in string.ascii_letters+string.digits:
+    input_string = input_string.replace(c, unichr(ord(c)+65248))
+
+print(unicode(input_string))
