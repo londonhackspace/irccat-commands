@@ -25,3 +25,4 @@ pickle.pck
 .trailermast.txt
 .vendingmachine.txt
 *~
+ps-venv/
