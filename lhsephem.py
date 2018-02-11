@@ -169,7 +169,7 @@ class HorizonsSource(object):
 
     def __getitem__(self, name):
         if name not in self.satellites:
-            q = callhorizons.query(name)
+            q = callhorizons.query(name, smallbody=False)
             q.set_discreteepochs(ephem.julian_date(self.epoch))
             try:
                 sats = q.export2pyephem()

@@ -1,9 +1,11 @@
 #!/opt/irccat/irccat-commands/lhsephem-venv/bin/python
 from lhsephem import getbody, lhs
 from ephem import EarthSatellite, EllipticalBody, meters_per_au
+
 import sys, math
 import requests
 from lxml import etree, objectify
+from datetime import datetime, timedelta
 
 def revgeocode(lat, lng):
     # http://www.geonames.org/export/web-services.html
@@ -50,6 +52,12 @@ def revgeocode(lat, lng):
 
 
 def print_location(sat):
+    name = sat.name
+    if len(name) == 32:
+        # It's probably been truncated
+        name, _ = name.rsplit(' ', 1)
+        name += '...'
+
     if isinstance(sat, EarthSatellite):
         lat = sat.sublat / math.pi * 180
         lng = (sat.sublong / math.pi * 180 + 180) % 360 - 180
@@ -59,27 +67,42 @@ def print_location(sat):
         location_msg = ' (%s)' % loc if loc else ''
         eclipsed_msg = ', eclipsed' if sat.eclipsed else ''
 
-        msg = '%s: %dkm above %s,%s%s, distance %dkm %skm/s, magnitude %s%s (orbit as of %s)' % (
-            sat.name,
-            round(sat.elevation / 1000),
+        if abs(datetime.utcnow() - sat._epoch.datetime()) > timedelta(seconds=3600):
+            updated_msg = ' (updated %s)' % sat._epoch.datetime().strftime('%Y-%m-%d %H:%M')
+        else:
+            updated_msg = ''
+
+        msg = '%s: %skm above %s,%s%s, distance %skm %skm/s, magnitude %s%s%s' % (
+            name,
+            int(round(sat.elevation / 1000)),
             round(lat, 3),
             round(lng, 3),
             location_msg,
-            round(sat.range / 1000),
+            int(round(sat.range / 1000)),
             round(sat.range_velocity / 1000, 2),
             sat.mag,
             eclipsed_msg,
-            sat._epoch.datetime().strftime('%Y-%m-%d %H:%M'),
+            updated_msg,
         )
 
     elif isinstance(sat, EllipticalBody):
-        msg = '%s: %s, %s, distance %dkm, magnitude %s (as of %s)' % (
-            sat.name,
+        if math.isnan(sat.earth_distance):
+            distance_msg = ''
+        else:
+            distance_msg = ', distance %skm' % int(round(sat.earth_distance * meters_per_au / 1000.0))
+
+        if abs(datetime.utcnow() - sat._epoch_M.datetime()) > timedelta(seconds=3600):
+            updated_msg = ' (updated %s)' % sat._epoch_M.datetime().strftime('%Y-%m-%d %H:%M')
+        else:
+            updated_msg = ''
+
+        msg = '%s: %s, %s%s, magnitude %s%s' % (
+            name,
             sat.ra,
             sat.dec,
-            round(sat.earth_distance * meters_per_au / 1000.0),
+            distance_msg,
             sat.mag,
-            sat._epoch_M.datetime().strftime('%Y-%m-%d %H:%M'),
+            updated_msg,
         )
 
     print msg.encode('utf-8')
