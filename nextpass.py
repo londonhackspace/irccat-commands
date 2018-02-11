@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/irccat/irccat-commands/lhsephem-venv/bin/python
 from lhsephem import getbody, lhs, compass
 import sys, math
 from pytz import timezone, utc

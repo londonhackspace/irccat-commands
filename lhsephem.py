@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/irccat/irccat-commands/lhsephem-venv/bin/python
 import ephem
 from ordereddict import OrderedDict
 from urllib import urlopen
@@ -6,6 +6,7 @@ from datetime import datetime
 import lxml.html
 import requests
 import math
+import callhorizons
 
 
 def compass(angle):
@@ -156,6 +157,31 @@ class ZaryaSource(object):
     def __getitem__(self, key):
         pass
 
+class HorizonsSource(object):
+    def __init__(self, epoch=None):
+        if epoch is None:
+            epoch = datetime.now()
+        self.epoch = epoch
+        self.satellites = {}
+
+    def load(self):
+        pass
+
+    def __getitem__(self, name):
+        if name not in self.satellites:
+            q = callhorizons.query(name)
+            q.set_discreteepochs(ephem.julian_date(self.epoch))
+            try:
+                sats = q.export2pyephem()
+            except ValueError as e:
+                if e.message.startswith('Unknown target'):
+                    raise KeyError('%s not found in %s' % (name, repr(self)))
+                raise
+
+            self.satellites[name] = sats[0]
+
+        return self.satellites[name]
+
 def getbody(body):
 
     sources = OrderedDict([
@@ -166,6 +192,7 @@ def getbody(body):
 #        ('celestrak-weather',  TLESource('http://celestrak.com/NORAD/elements/weather.txt')),
         ('kepler',             TLESource('http://mstl.atl.calpoly.edu/~ops/keps/kepler.txt')),
 #        ('zarya',              ZaryaSource()),
+        ('horizons',           HorizonsSource()),
     ])
 
     aliases = {

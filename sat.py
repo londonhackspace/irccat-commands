@@ -1,5 +1,6 @@
-#!/usr/bin/env python
+#!/opt/irccat/irccat-commands/lhsephem-venv/bin/python
 from lhsephem import getbody, lhs
+from ephem import EarthSatellite, EllipticalBody, meters_per_au
 import sys, math
 import requests
 from lxml import etree, objectify
@@ -49,25 +50,37 @@ def revgeocode(lat, lng):
 
 
 def print_location(sat):
-    lat = sat.sublat / math.pi * 180
-    lng = (sat.sublong / math.pi * 180 + 180) % 360 - 180
+    if isinstance(sat, EarthSatellite):
+        lat = sat.sublat / math.pi * 180
+        lng = (sat.sublong / math.pi * 180 + 180) % 360 - 180
 
-    loc = revgeocode(lat, lng)
+        loc = revgeocode(lat, lng)
 
-    location_msg = ' (%s)' % loc if loc else ''
-    eclipsed_msg = ', eclipsed' if sat.eclipsed else ''
+        location_msg = ' (%s)' % loc if loc else ''
+        eclipsed_msg = ', eclipsed' if sat.eclipsed else ''
 
-    msg = '%dkm above %s,%s%s, distance %dkm %skm/s, magnitude %s%s (orbit as of %s)' % (
-      round(sat.elevation / 1000),
-      round(lat, 3),
-      round(lng, 3),
-      location_msg,
-      round(sat.range / 1000),
-      round(sat.range_velocity / 1000, 2),
-      sat.mag,
-      eclipsed_msg,
-      sat._epoch.datetime().strftime('%Y-%m-%d %H:%M'),
-    )
+        msg = '%s: %dkm above %s,%s%s, distance %dkm %skm/s, magnitude %s%s (orbit as of %s)' % (
+            sat.name,
+            round(sat.elevation / 1000),
+            round(lat, 3),
+            round(lng, 3),
+            location_msg,
+            round(sat.range / 1000),
+            round(sat.range_velocity / 1000, 2),
+            sat.mag,
+            eclipsed_msg,
+            sat._epoch.datetime().strftime('%Y-%m-%d %H:%M'),
+        )
+
+    elif isinstance(sat, EllipticalBody):
+        msg = '%s: %s, %s, distance %dkm, magnitude %s (as of %s)' % (
+            sat.name,
+            sat.ra,
+            sat.dec,
+            round(sat.earth_distance * meters_per_au / 1000.0),
+            sat.mag,
+            sat._epoch_M.datetime().strftime('%Y-%m-%d %H:%M'),
+        )
 
     print msg.encode('utf-8')
 
@@ -75,13 +88,14 @@ def print_location(sat):
 args = sys.argv[5:]
 
 if args:
-  body = ' '.join(args)
+    body = ' '.join(args)
 else:
-  sys.exit(1)
+    sys.exit(1)
 
 
 
 sat = getbody(body)
+#print dir(sat)
 sat.compute(lhs)
 print_location(sat)
 
