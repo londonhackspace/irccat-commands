@@ -20,6 +20,7 @@ responses = [
 "http://files.explosm.net/comics/Dave/phoneswithbeesinthem.png",
 "https://twitter.com/countingsong/status/982425452160495616",
 "http://img.pr0gramm.com/2014/07/19/4b9601310e82707d.gif",
+"https://twitter.com/Pipbois/status/931528946243522561",
 ]
 
 print random.choice(responses)
