@@ -23,6 +23,7 @@ responses = [
 "https://twitter.com/Pipbois/status/931528946243522561",
 "https://video.twimg.com/tweet_video/DiQCNWBXcAELlt7.mp4",
 "https://video.twimg.com/tweet_video/DiQKKiLVMAA_QP0.mp4",
+"https://www.youtube.com/watch?v=nNvo2Ny-hxc",
 ]
 
 print random.choice(responses)
