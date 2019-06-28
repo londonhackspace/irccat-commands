@@ -22,7 +22,7 @@ start = int(time.mktime(start.timetuple()))
 #start = start + coolbot
 
 # the lasercutter is toolid 5
-url = "http://acserver.london.hackspace.org.uk/api/get_tool_runtime_since/5/" + str(start)
+url = "http://acserver.london.hackspace.org.uk/api/get_tool_runtime_since/11/" + str(start)
 
 ret = urllib2.urlopen(url).read()
 ret = json.loads(ret)[0]
