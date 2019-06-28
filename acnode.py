@@ -3,26 +3,24 @@ import requests
 import sys
 
 tools = {
-    (1, '3-in-1 lathe/mill'):
-        ['3in1', '3-in-1', '3 in 1', 'three in one', 'three-in-one'],
-    (2, 'Old laser cutter'):
-        ['oldlasercutter', 'old lasercutter'],
     (3, 'Lulzbot 1 (hull)'):
         ['lulz', 'lulz bot', 'hull'],
-    (4, 'Biohacking Lab'):
-        ['biohackers', 'biolab'],
-    (5, 'Laser cutter'):
+    (4, 'Lulzbot 2 (crump)'):
+        ['lulz2', 'crump'],
+    (11, 'Laser cutter'):
         ['laser', 'lasercutter'],
-    (6, 'TIG welder'):
-        ['tig'],
-    (7, 'Shapeoko'):
-        ['shapeoko2', 'shapeoko 2'],
-    (10, 'Myford lathe'):
-        ['myford'],
-    (11, 'Green milling machine'):
-        ['green'],
-    (16, 'Lulzbot 2 (crump)'):
-        ['lulz2', 'crump']
+    (15, 'Colchester Lathe'):
+        ['lathe'],
+    (16, 'Bridgeport Mill'):
+        ['mill'],
+    (16, 'Bridgeport Mill'):
+        ['mill'],
+    (18, 'Sedgwick table saw'):
+        ['tablesaw'],
+    (19, 'Planer'):
+        ['Planer'],
+    (20, 'Radial arm saw'):
+        ['radialarmsaw'],
 }
 
 tool = ' '.join(sys.argv[5:])
