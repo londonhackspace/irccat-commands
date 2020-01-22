@@ -4,3 +4,10 @@ The donkey saw is not for sawing donkeys in half.
 Do not attempt to iron your clothes with a soldering iron.
 The jigsaws in the wood shop are not suitable for children under the age of three.
 Do not attempt to etch copper from your hands in the PCB etching tank.
+The table saws can be used for sawing tables, but please do not hack the infrastructure without asking.
+The mill should not be used for grinding corn or wheat.
+The laser cutter is not for cutting lasers.
+Do not attempt to operate Tesla while holding an active Tesla coil.
+If printers are evil, 3D printers are evil in three dimensions.
+The SMD reflow oven is not designed for pizza.
+Glados is not self-aware, but is aware of you.
