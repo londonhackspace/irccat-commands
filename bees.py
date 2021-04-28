@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # One day this script will response with the status of the Hackspace's hives
 # But for now just have some whimsy
@@ -26,4 +26,4 @@ responses = [
 "https://www2.b3ta.com/host/creative/6283/1569172291/USBee.jpg",
 ]
 
-print random.choice(responses)
+print(random.choice(responses))
