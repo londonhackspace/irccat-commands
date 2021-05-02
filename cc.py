@@ -125,5 +125,5 @@ for i in range(cvv_length):
     ccv.append(generator.choice(['0',  '1', '2', '3', '4', '5', '6', '7', '8', '9']))
 
 number = credit_card_number(generator, prefix, 16)
-print "%s: %s, ccv: %s" % (type, number, ''.join(ccv))
+print ("%s: %s, ccv: %s" % (type, number, ''.join(ccv)))
         

@@ -49,8 +49,8 @@ if len(sys.argv) > 5:
     for reason in reasons:
         if term.lower() in reason.lower():
             msg = "BINGO! {0}!".format(reason)
-            print msg
+            print (msg)
             break
 else:
     reason = random.choice(reasons)
-    print reason
+    print (reason)
