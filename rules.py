@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python33
 
 """ Repeats either individual or all rules to the user """
 # SamLR 18-05 feel free to do what you like with this

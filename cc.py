@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 """
 gencc: A simple program to generate credit card numbers that pass the MOD 10 check

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import urllib2, re
 
 url = "http://wiki.hackspace.org.uk/w/index.php?title=Keyholders&printable=yes"

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from sys import argv
 if argv[-1] == 'sugarwater': print"you take a swig of refreshing sugarwater"

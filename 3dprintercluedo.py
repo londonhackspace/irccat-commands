@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import random
 
 names = ['hipster', 'ian', 'zippo', 'dean', 'billy', 'glen']

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 from random import choice
 
 f = open  ("/usr/share/irccat/.markovbot.txt", "r")
