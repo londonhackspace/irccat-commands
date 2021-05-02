@@ -1,3 +1,3 @@
 #!/usr/bin/env python
 
-print "No idea."
+print ("No idea.")
