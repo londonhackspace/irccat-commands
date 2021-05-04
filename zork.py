@@ -23,7 +23,7 @@ def get_response(path):
     return response
 
 def sanitize(data):
-    #print repr(data)
+    #print (repr(data))
     sections = data.split('\x1b[m')
     data = sections[-1]
     data = re.sub('\x1b\[[0-9]+;[0-9]+H', ' ', data)
@@ -44,4 +44,4 @@ if len(sys.argv) > 5:
 
         time.sleep(1)
         response = get_response(input_path)
-        print sanitize(' '.join(response)).rstrip()
+        print (sanitize(' '.join(response)).rstrip())

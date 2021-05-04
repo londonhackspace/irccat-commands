@@ -36,4 +36,4 @@ msg = u'Currently %.1f\u00b0C%s, humidity %s%%, wind: %s at %.0fmph. %s %s' % (
     minute_summary,
     day_summary,
 )
-print msg.encode('utf-8')
+print (msg.encode('utf-8'))

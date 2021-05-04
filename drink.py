@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# requires Debian package wbritish-insane
 import random
 import mmap
 import re
@@ -23,5 +24,5 @@ def filterwordlist(filename):
 
 if __name__ == '__main__':
     wordlist = filterwordlist('/usr/share/dict/british-english-insane')
-    print random.choice(wordlist).decode('utf-8').upper().encode('utf-8')
+    print (random.choice(wordlist).decode('utf-8').upper().encode('utf-8'))
 

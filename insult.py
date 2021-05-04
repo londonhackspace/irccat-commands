@@ -61,4 +61,4 @@ def insult():
 	return insult
 
 if __name__ == "__main__":
-	print insult()
+	print (insult())

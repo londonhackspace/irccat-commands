@@ -222,15 +222,15 @@ if arg in ('99.1', 'b.99.1', 'social.b.99.1'):
 
 
 if arg in ('help', '?', '-?'):
-    print "Use ?rules <n> for a specific rule or ?rules to be PM'd all the rules"
+    print ("Use ?rules <n> for a specific rule or ?rules to be PM'd all the rules")
 
 elif arg in rules:
     msg = u"Rule %s: %s" % (arg.decode('utf-8'), rules[arg].decode('utf-8'))
-    print msg.encode('utf-8')
+    print (msg.encode('utf-8'))
 
 else:
     if False:
-        print argv[1], "I have PM'd you a list of the hackspace rules"
+        print (argv[1], "I have PM'd you a list of the hackspace rules")
         # open a socket to localhost to allow the pm to be sent
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect(('localhost', 12345))
@@ -242,5 +242,5 @@ else:
             sleep(0.1)
         s.close()
     else:
-        print 'http://wiki.london.hackspace.org.uk/view/Rules'
+        print ('http://wiki.london.hackspace.org.uk/view/Rules')
 

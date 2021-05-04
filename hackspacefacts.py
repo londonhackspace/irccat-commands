@@ -28,6 +28,6 @@ facts = [
          'All swans in the Hackspace officially belong to Jonty',
 ]
 
-print random.choice(facts)
+print (random.choice(facts))
 
 

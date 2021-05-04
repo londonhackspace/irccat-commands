@@ -14,11 +14,11 @@ laws = ("Do not harm humanity, or, by inaction, allow humanity to come to harm",
 )
 
 if argv[-1]=='help' or argv[-1]=='?':
-    print "use ?laws <n> for a specific law or ?laws to be PM'd all the laws"
+    print ("use ?laws <n> for a specific law or ?laws to be PM'd all the laws")
 elif argv[-1].isdigit(): 
-    print "Law %i: %s"%(int(argv[-1]), laws[int(argv[-1])])
+    print ("Law %i: %s"%(int(argv[-1]), laws[int(argv[-1])]))
 else:
-    print argv[1], "I have PM'd you a list of the hackspace laws"
+    print (argv[1], "I have PM'd you a list of the hackspace laws")
     # open a socket to localhost to allow the pm to be sent
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect(('localhost', 12345))

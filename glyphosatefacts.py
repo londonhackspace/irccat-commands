@@ -15,6 +15,6 @@ facts = [
 
 
 
-print random.choice(facts)
+print (random.choice(facts))
 
 

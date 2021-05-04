@@ -239,5 +239,5 @@ if len(sys.argv) > 5:
 
 name = ' '.join(terms).upper()
 phrase = phrase.format(name)
-print phrase
+print (phrase)
 

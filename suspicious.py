@@ -11,5 +11,5 @@ suspicious = [
     'http://goo.gl/ewD2tO',
     u'http://hack.rs/\u0ca0_\u0ca0.jpg',
 ]
-print suspicious[random.randrange(len(suspicious))].encode('utf-8')
+print ( suspicious[random.randrange(len(suspicious))].encode('utf-8') )
 

@@ -4,7 +4,7 @@ import sys
 import math
 
 if sys.argv[2] not in ['null', '#london-hack-space-dev']:
-    print 'upword is private message/dev channel only'
+    print ('upword is private message/dev channel only')
     sys.exit()
 
 word = sys.argv[5]
@@ -30,5 +30,5 @@ with open("/proc/uptime", "r") as f:
 
 st = word[:vowel] +  word[vowel:vowel+1] * seconds +  word[vowel+1:]
 
-print st.encode('utf-8')
+print ( st.encode('utf-8') )
 
