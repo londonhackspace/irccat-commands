@@ -11,5 +11,5 @@ page = urllib.urlopen(url).read()
 match = re.search('"estimatedResultCount":"(.*?)"', page)
 if match:
   count = int(match.group(1))
-  print locale.format('%d', count, True)
+  print (locale.format('%d', count, True))
 

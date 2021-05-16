@@ -27,7 +27,7 @@ except:
   watches = {}
 
 if itemid not in watches:
-  print 'Item not being watched'
+  print ('Item not being watched')
   sys.exit()
 
 del watches[itemid]

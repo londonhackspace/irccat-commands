@@ -91,11 +91,11 @@ def printmsg(name, what, next):
   NB No account is taken of timezones.
   '''
 
-  print '%s: %s (%s until %s!)' % (
+  print ('%s: %s (%s until %s!)' % (
     name,
     date_nice(next),
     untilmsg(next),
     what,
-  )
+  ))
 
 

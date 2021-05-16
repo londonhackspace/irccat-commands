@@ -45,5 +45,5 @@ for line in lines:
     extract = line[:endpoint]
 
     if len(extract) > 50:
-        print extract
+        print (extract)
         break

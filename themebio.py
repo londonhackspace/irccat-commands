@@ -71,4 +71,4 @@ JOBS = [
 ]
 
 import random
-print ' '.join(random.sample(JOBS, 2))
+print (' '.join(random.sample(JOBS, 2)))

@@ -13,7 +13,7 @@ import time
 levelText = ['peaceful', 'low', 'elevated', 'critical']
 
 if sys.argv[3].startswith('#'):
-    print 'Please use /msg for ragelevel or use ?noisebridgelevel'
+    print ( 'Please use /msg for ragelevel or use ?noisebridgelevel' )
     sys.exit(1)
 
 if(len(sys.argv) <= 5):
@@ -34,7 +34,7 @@ if(len(sys.argv) <= 5):
 
 
 
-    print "Current IRC rage level is", levelText[int(level)] , expString
+    print ( "Current IRC rage level is", levelText[int(level)] , expString )
     f.close()
 
 
@@ -48,7 +48,7 @@ else:
         try:
             levelIndex = levelText.index(level)
         except ValueError:
-            print "Thats not a valid level, try 'peaceful', 'low', 'elevated', or 'critical'"
+            print ( "Thats not a valid level, try 'peaceful', 'low', 'elevated', or 'critical'" )
             sys.exit()
     else:
         levelIndex = int(level)
@@ -57,6 +57,6 @@ else:
     f.write(str(levelIndex))
     f.close()
    
-    print "Setting Rage Level to", levelText[levelIndex]
+    print ( "Setting Rage Level to", levelText[levelIndex] )
 
 

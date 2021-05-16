@@ -15,4 +15,4 @@ root = html.document_fromstring(response.content)
 elements = root.xpath('//tr/td[1]/a|//tr/td[1]/i/a')
 
 sammitch = random.choice(elements)
-print "WHY DON'T YOU EAT A %s: http://en.wikipedia.org%s" % (sammitch.text.strip().upper(), sammitch.attrib['href'])
+print ("WHY DON'T YOU EAT A %s: http://en.wikipedia.org%s" % (sammitch.text.strip().upper(), sammitch.attrib['href']))

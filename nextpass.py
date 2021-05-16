@@ -10,7 +10,7 @@ def print_nextpass(sat, loc):
 
     london = timezone('Europe/London')
     if not all([rt, tt, st]):
-        print dir(sat)
+        print (dir(sat))
         # I don't understand how this can happen, but it does for
         # ['ISS (ZARYA)', '1 25544U 98067A   14122.59948867 -.00006135  00000-0 -10042-3 0  2019', '2 25544  51.6474 325.5221 0002530 329.3158 128.9928 15.49779978884252']
         # at 2014/5/2 17:51:17
@@ -35,7 +35,7 @@ def print_nextpass(sat, loc):
       reldt(tt, rt), round(ta / (2 * math.pi) * 360),
       reldt(st, tt), rt.strftime('%Z'), compass(sa),
     )
-    print msg.encode('utf-8')
+    print (msg.encode('utf-8'))
 
 
 args = sys.argv[5:]

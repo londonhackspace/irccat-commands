@@ -13,6 +13,6 @@ rumours = [
 ]
 
 rumour = random.choice(rumours)
-print rumour.format(noun)
+print (rumour.format(noun))
 
 sys.exit()

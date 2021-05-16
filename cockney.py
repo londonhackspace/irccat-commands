@@ -77,6 +77,6 @@ if matches:
   else:
     ens_text = ens_last
 
-  print '%s is cockney rhyming slang for %s' % (matches[0], ens_text)
+  print ('%s is cockney rhyming slang for %s' % (matches[0], ens_text))
 
 

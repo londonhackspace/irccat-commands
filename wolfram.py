@@ -38,4 +38,4 @@ if root.xpath("/queryresult")[0].attrib['success'] == 'true':
 
     response = "%s: %s = %s" % (user, question, answer)
     response = response.replace(u'\uf74d', u'\u212f')
-    print response.encode('utf8')
+    print (response.encode('utf8'))

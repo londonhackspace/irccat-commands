@@ -31,4 +31,4 @@ east = sorted(east.values(), key=wait_key)
 westmsg = ', '.join('%s in %s' % (b['routeId'], b['estimatedWait'].replace(' ', '')) for b in west)
 eastmsg = ', '.join('%s in %s' % (b['routeId'], b['estimatedWait'].replace(' ', '')) for b in east)
 
-print 'Going west: %s; Going east: %s' % (westmsg, eastmsg)
+print ('Going west: %s; Going east: %s' % (westmsg, eastmsg))

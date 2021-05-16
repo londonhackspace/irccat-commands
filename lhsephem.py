@@ -124,7 +124,7 @@ class ZaryaSource(object):
                 description, id, number = parts[:3]
                 parts = [p.strip() for p in description.split(u'\xa0', 1)] + [None]
                 body, full_name = parts[:2]
-                print repr([body, full_name, id, number])
+                print (repr([body, full_name, id, number]))
             elif tds[0].startswith('epoch'):
                 continue
             elif tds[0].startswith('orbital parameters awaited'):

@@ -19,12 +19,12 @@ class Gun:
 
     def pull_trigger(self):
         if self._chamber[0] == 0:
-            print '*CLICK*'
+            print ('*CLICK*')
             self.spin_chamber(1)
         else:
-            print "*BANG* You're dead!"
+            print ("*BANG* You're dead!")
             
-            print "Reloading and spinning the chamber"
+            print ("Reloading and spinning the chamber")
             self.spin_chamber()
 
 
@@ -48,7 +48,7 @@ if not gun:
     gun = Gun()
     gun.load()
     gun.spin_chamber()
-    print 'Loading the gun and spinning the chamber'
+    print ('Loading the gun and spinning the chamber')
 
 gun.pull_trigger()
 

@@ -51,12 +51,12 @@ if __name__ == '__main__':
     events = get_future_events()
 
     if not events:
-        print "No talks yet. Email talks@dc4420.org if you'd like to give one."
+        print ("No talks yet. Email talks@dc4420.org if you'd like to give one.")
 
     else:
         start, event = events[0]
-        print "Talk summary for %s (more details at https://dc4420.org/):" % start.strftime("%a %d %B %Y")
+        print ("Talk summary for %s (more details at https://dc4420.org/):" % start.strftime("%a %d %B %Y"))
         for speaker, title in talk_getter(event):
             msg = ' * %s: %s' % (speaker.replace('\n', ' '), title.replace('\n', ' '))
-            print msg.encode('utf-8')
+            print (msg.encode('utf-8'))
 

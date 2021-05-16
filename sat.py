@@ -11,7 +11,7 @@ def revgeocode(lat, lng):
     # http://www.geonames.org/export/web-services.html
     resp = requests.get('http://api.geonames.org/extendedFindNearby', params={'lat': lat, 'lng': lng, 'username': 'ms7821'})
     root = objectify.fromstring(resp.content)
-    #print resp.content
+    #print (resp.content)
 
     if hasattr(root, 'geoname'):
         # http://www.geonames.org/export/codes.html
@@ -105,7 +105,7 @@ def print_location(sat):
             updated_msg,
         )
 
-    print msg.encode('utf-8')
+    print (msg.encode('utf-8'))
 
 
 args = sys.argv[5:]
@@ -118,7 +118,7 @@ else:
 
 
 sat = getbody(body)
-#print dir(sat)
+#print (dir(sat))
 sat.compute(lhs)
 print_location(sat)
 

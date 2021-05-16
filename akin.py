@@ -52,9 +52,9 @@ if len(argv) >= 5:
 
 if arg in laws:
     msg = u"Law %s: %s" % (arg, laws[arg].decode('utf-8'))
-    print msg.encode('utf-8')
+    print (msg.encode('utf-8'))
 
 else:
-    print 'http://spacecraft.ssl.umd.edu/akins_laws.html'
+    print ('http://spacecraft.ssl.umd.edu/akins_laws.html')
 
 

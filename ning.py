@@ -4,7 +4,7 @@ import datetime
 now = datetime.datetime.now()
 
 if now.hour < 12:
-    print 'MORNING!'
+    print ('MORNING!')
 if now.hour > 17:
-    print 'EVENING!'
+    print ('EVENING!')
 

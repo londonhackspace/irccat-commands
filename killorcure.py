@@ -49,6 +49,6 @@ if msg:
     msg = msg[0].upper() + msg[1:]
     titles = ['"%s"' % t for t in [causetitle, preventtitle] if t]
     if titles:
-        print '%s (%s)' % (msg, ' vs '.join(titles))
+        print ('%s (%s)' % (msg, ' vs '.join(titles)))
     else:
-        print msg
+        print (msg)

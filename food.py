@@ -57,7 +57,7 @@ for food in foods:
     totals[place] += score
 
 if not any(totals.values()):
-  place, addr = random.choice(PLACES.keys())
+  place, addr = shuffle(choice(list(PLACES.keys()))
   if not any(foods):
     msg = ''
   else:
@@ -70,4 +70,4 @@ else:
   place, addr = random.choice(candidates)
   msg = 'I suggest %s, %s' % (place, addr)
 
-print msg
+print (msg)

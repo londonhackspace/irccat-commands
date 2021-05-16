@@ -50,7 +50,7 @@ complaints = [
   u'%s plural_verb(is) a pile of dick',
 ]
 
-thing = ' '.join(sys.argv[5:]).decode('utf-8')
+thing = ' '.join(sys.argv[5:])
 
 def spurious_singular(word):
     word = word.lower()
@@ -67,7 +67,7 @@ def spurious_singular(word):
 if thing:
   
   if 'cabal' in thing.lower():
-      print "THERE IS NO IRC CABAL"
+      print ("THERE IS NO IRC CABAL")
       sys.exit(0)
 
   p = inflect.engine()
@@ -80,7 +80,7 @@ if thing:
       if not spurious_singular(p.singular_noun(thing)):
         # NB breaks "doing this and that", and "the answer to the ultimate question of life, the universe, and everything"
         p.num(3)
-  except Exception, e:
+  except Exception:
     try:
       singulars = [p.singular_noun(w) for w in thing.split(' ')]
       singulars = [s for s in singulars if not spurious_singular(s)]
@@ -94,5 +94,5 @@ if thing:
     if complaint.startswith('%s'):
       thing = thing[0].upper() + thing[1:]
 
-  print p.inflect(complaint % thing).encode('utf-8')
+  print (p.inflect(complaint % thing).encode('utf-8'))
 
