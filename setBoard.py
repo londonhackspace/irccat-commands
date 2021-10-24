@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys, time, re, urllib, urllib2
+import sys, time, re, urllib, urllib.parse, urllib.request
 
 args = sys.argv
 host = args[1]
@@ -12,14 +12,15 @@ message = message[:162]
 if message == '' or re.match(u'^[\xc2\xa3 -~]+$', message):
     message = message
 else:
-    print 'Standard ASCII only please'
+    print ('Standard ASCII only please')
     sys.exit(0)
 
 if message == '':
-  print "Board cleared"
+  print ("Board cleared")
 else:
-  print "Displayed on board"
+  print ("Displayed on board")
 
 # Send to boarded
-message = urllib.quote(message)
-urllib2.urlopen("http://%s:8020/%s" % (host, message))
+message = urllib.parse.quote(message)
+url = "http://%s:8020/%s" % (host, message)
+urllib.request.urlopen(url)
