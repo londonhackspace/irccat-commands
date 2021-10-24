@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 
 import sys, time, re, urllib, urllib.parse, urllib.request
 
